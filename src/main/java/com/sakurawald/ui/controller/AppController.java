@@ -64,6 +64,30 @@ public class AppController extends Controller {
         if (chooseMap != null) this.textfield_map.setText(chooseMap.getAbsolutePath());
     }
 
+    private void disableControl() {
+        this.button_launch.setDisable(true);
+        this.combobox_choose_opponent_ai_bot.setDisable(true);
+        this.combobox_choose_opponent_ai_race.setDisable(true);
+        this.combobox_choose_opponent_computer_difficulty.setDisable(true);
+        this.combobox_choose_opponent_computer_race.setDisable(true);
+        this.combobox_choose_player_race.setDisable(true);
+        this.textfield_map.setDisable(true);
+        this.button_browse.setDisable(true);
+        this.button_launch.setText("Playing...");
+    }
+
+    private void enableControl() {
+        this.button_launch.setDisable(false);
+        this.combobox_choose_opponent_ai_bot.setDisable(false);
+        this.combobox_choose_opponent_ai_race.setDisable(false);
+        this.combobox_choose_opponent_computer_difficulty.setDisable(false);
+        this.combobox_choose_opponent_computer_race.setDisable(false);
+        this.combobox_choose_player_race.setDisable(false);
+        this.textfield_map.setDisable(false);
+        this.button_browse.setDisable(false);
+        App.appInstance.getController().button_launch.setText("Launch");
+    }
+
     @FXML
     void button_launch_onAction(ActionEvent event) {
 
@@ -72,8 +96,8 @@ public class AppController extends Controller {
             JavaFxUtil.DialogTools.errorDialog("Map Can't Be Empty.");
             return;
         }
-        this.button_launch.setDisable(true);
-        this.button_launch.setText("Playing...");
+
+        disableControl();
 
         new Thread(() -> {
 
@@ -115,8 +139,7 @@ public class AppController extends Controller {
                 LoggerManager.reportException(e);
             } finally {
                 Platform.runLater(() -> {
-                    App.appInstance.getController().button_launch.setDisable(false);
-                    App.appInstance.getController().button_launch.setText("Launch");
+                    enableControl();
                 });
             }
 
@@ -140,6 +163,9 @@ public class AppController extends Controller {
     private void initPluginsCombobox() {
         combobox_choose_opponent_ai_bot.getItems().clear();
         combobox_choose_opponent_ai_bot.getItems().addAll(PluginManager.getLoadedPlugins());
+        if (!combobox_choose_opponent_ai_bot.getItems().isEmpty()) {
+            combobox_choose_opponent_ai_bot.getSelectionModel().selectFirst();
+        }
     }
 
     @FXML
