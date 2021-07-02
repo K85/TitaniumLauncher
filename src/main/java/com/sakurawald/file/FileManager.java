@@ -41,7 +41,7 @@ public class FileManager {
     private static String getApplicationConfigPath() {
         String result;
         result = FileUtil.getJavaRunPath();
-        result = result + "Nekomata" + File.separator + "configs" + File.separator;
+        result = result + File.separator + "Titanium" + File.separator + "Configs" + File.separator;
         return result;
     }
 }
