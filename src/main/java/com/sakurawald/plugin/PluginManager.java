@@ -1,20 +1,23 @@
 package com.sakurawald.plugin;
 
 
+import com.sakurawald.Titanium;
 import com.sakurawald.debug.LoggerManager;
-import com.sakurawald.file.ConfigFile;
 
 import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
 
 public class PluginManager {
+
+    private static final ArrayList<PluginBase> loadedPlugins = new ArrayList<>();
 
 
     public static int loadPlugins() {
 
-        File pluginsFolder = new File(ConfigFile.getApplicationConfigPath() + "\\Plugins");
+        File pluginsFolder = new File(Titanium.getLauncherPluginsPath());
 
         int loadedPluginCount = 0;
 
@@ -33,6 +36,7 @@ public class PluginManager {
                  */
                 Class<?> clazz = ucl.loadClass(file.getName());   // Load Class.
 
+                // Call -> onLoad()
                 Method onLoadMethod = clazz.getMethod("onLoad");   // Get Method.
                 onLoadMethod.invoke(clazz.getDeclaredConstructor().newInstance());
 
@@ -46,4 +50,11 @@ public class PluginManager {
         return loadedPluginCount;
     }
 
+    public static ArrayList<PluginBase> getLoadedPlugins() {
+        return PluginManager.loadedPlugins;
+    }
+
+    public static void addLoadedPlugin(PluginBase pluginBase) {
+        PluginManager.loadedPlugins.add(pluginBase);
+    }
 }

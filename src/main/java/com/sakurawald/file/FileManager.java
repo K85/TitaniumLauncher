@@ -24,6 +24,7 @@ public class FileManager {
 
         // Mkdirs.
         new File(Titanium.getLauncherMapsPath()).mkdirs();
+        new File(Titanium.getLauncherPluginsPath()).mkdirs();
 
         // ApplicationConfig.json
         LoggerManager.getLogger().info("Init >> ApplicationConfig.json");

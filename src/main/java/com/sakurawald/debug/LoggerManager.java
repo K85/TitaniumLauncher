@@ -20,7 +20,7 @@ public class LoggerManager {
 
     public static final String SAD_FACIAL_EXPRESSION = "(ó﹏ò｡)";
 
-    private static final Logger local_Logger = LogManager.getLogger();
+    private static final Logger local_Logger = LogManager.getLogger(LoggerManager.class);
 
     public static Logger getLogger() {
         return local_Logger;
@@ -76,9 +76,9 @@ public class LoggerManager {
     public static String getExceptionInfo(Exception e) {
 
         // 添加Exception基础信息
-        String result = "错误类型: " + e.getClass() + "\n原因: " + e.getCause() +
-                "\n消息: " + e.getMessage() +
-                "\n栈追踪: " +
+        String result = "Type: " + e.getClass() + "\nReason: " + e.getCause() +
+                "\nMessage: " + e.getMessage() +
+                "\nStackTrace: " +
 
                 // 添加栈追踪记录
                 "\n" +

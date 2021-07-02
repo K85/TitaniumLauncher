@@ -21,6 +21,10 @@ public abstract class PluginBase {
 
     public abstract S2Agent generateS2Agent();
 
+    public void onLoad() {
+        PluginManager.addLoadedPlugin(this);
+    }
+
     /**
      * Do some init if needed.
      **/

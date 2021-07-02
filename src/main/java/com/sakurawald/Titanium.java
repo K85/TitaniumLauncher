@@ -3,6 +3,7 @@ package com.sakurawald;
 import com.sakurawald.debug.LoggerManager;
 import com.sakurawald.file.ConfigFile;
 import com.sakurawald.file.FileManager;
+import com.sakurawald.plugin.PluginManager;
 import com.sakurawald.ui.App;
 import com.sakurawald.util.FileUtil;
 import javafx.application.Application;
@@ -10,7 +11,7 @@ import javafx.application.Application;
 
 public class Titanium {
 
-    private static final String SILICON_VERSION = "Origin";
+    private static final String APPLICATION_VERSION = "Origin";
     private static final String OPEN_SOURCE = "https://github.com/K85";
 
 
@@ -26,11 +27,9 @@ public class Titanium {
         /** Init FileSystem. **/
         FileManager.initFileManager();
 
-//        /** Load Plugins. **/
-//        LoggerManager.logDebug("Load Silicon Plugins", true);
-//        if (PluginManager.loadPlugins() == 0) {
-//            throw new RuntimeException("No Plugin Found!");
-//        }
+        /** Load Plugins. **/
+        LoggerManager.logDebug("Load Titanium Plugins", true);
+        PluginManager.loadPlugins();
 
         LoggerManager.logDebug("Init >> End", true);
 
@@ -42,5 +41,9 @@ public class Titanium {
 
     public static String getLauncherMapsPath() {
         return ConfigFile.getApplicationConfigPath() + "Maps\\";
+    }
+
+    public static String getLauncherPluginsPath() {
+        return ConfigFile.getApplicationConfigPath() + "Plugins\\";
     }
 }
