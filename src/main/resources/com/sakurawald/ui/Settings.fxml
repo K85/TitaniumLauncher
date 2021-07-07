@@ -209,11 +209,28 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="Observation">
+            <Tab text="Monitor">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="127.0" layoutY="111.0" text="Here shows some informations about ObsetvationInterface" />
+                        <CheckBox fx:id="checkbox_monitor_events" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" text="Monitor Events" />
+                        <TextArea fx:id="textarea_monitor" layoutX="15.0" layoutY="39.0" prefHeight="470.0" prefWidth="261.0" />
+                        <TitledPane animated="false" collapsible="false" layoutX="296.0" prefHeight="520.0" prefWidth="348.0" text="Event Alert">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="346.0">
+                                 <children>
+                                    <CheckBox fx:id="checkbox_eventalert_idleworkeralert" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#checkbox_eventalert_idleworkeralert_onAction" text="Idle Worker Alert" />
+                                    <CheckBox fx:id="checkbox_eventalert_nucleardectectedalert" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" onAction="#checkbox_eventalert_nucleardectectedalert_onAction" text="Nuclear Launch Dectected Alert" />
+                                    <CheckBox fx:id="checkbox_eventalert_unitentervisionalert" layoutX="15.0" layoutY="75.0" mnemonicParsing="false" onAction="#checkbox_eventalert_unitentervisionalert_onAction" text="Unit Enter Vision Alert" />
+                                    <CheckBox fx:id="checkbox_eventalert_nydusdectectedalert" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkbox_eventalert_nydusdectectedalert_onAction" text="Nydus Dectected Alert" />
+                                    <CheckBox fx:id="checkbox_eventalert_unitcreatedalert" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkbox_eventalert_unitcreatedalert_onAction" text="Unit Created Alert" />
+                                    <CheckBox fx:id="checkbox_eventalert_unitdestroyalert" layoutX="15.0" layoutY="165.0" mnemonicParsing="false" onAction="#checkbox_eventalert_unitdestroyalert_onAction" text="Unit Destroy Alert" />
+                                    <CheckBox fx:id="checkbox_eventalert_upgradecompletedalert" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#checkbox_eventalert_upgradecompletedalert_onAction" text="Upgrade Completed Alert" />
+                                    <CheckBox fx:id="checkbox_eventalert_buildingcompletedalert" layoutX="15.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkbox_eventalert_buildingcompletedalert_onAction" text="Building Completed Alert" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </TitledPane>
                      </children>
                   </AnchorPane>
               </content>
