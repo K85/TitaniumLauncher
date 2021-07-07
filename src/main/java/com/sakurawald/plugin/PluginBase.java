@@ -34,4 +34,12 @@ public abstract class PluginBase {
         return App.appInstance.getController().combobox_choose_opponent_ai_race.getSelectionModel().getSelectedItem();
     }
 
+    public String getInputMapParam() {
+        return App.appInstance.getController().textfield_map.getText();
+    }
+
+    public Race getChoosePlayerRace() {
+        return App.appInstance.getController().combobox_choose_player_race.getSelectionModel().getSelectedItem();
+    }
+
 }

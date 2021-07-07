@@ -4,6 +4,7 @@ package com.sakurawald.ui;
 import com.sakurawald.debug.LoggerManager;
 import com.sakurawald.ui.bean.JavaFXInstance;
 import com.sakurawald.ui.controller.AppController;
+import com.sakurawald.ui.controller.SettingsController;
 import com.sakurawald.util.JavaFxUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ public class App extends Application {
      * JavaFXInstance: App
      **/
     public static final JavaFXInstance<AppController> appInstance = new JavaFXInstance<AppController>();
+    public static final JavaFXInstance<SettingsController> settingsInstance = new JavaFXInstance<SettingsController>();
 
     @Override
     public void start(Stage appStage) throws Exception {

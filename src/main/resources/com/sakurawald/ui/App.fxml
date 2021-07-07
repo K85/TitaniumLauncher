@@ -1,42 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-      prefHeight="314.0" prefWidth="483.0" xmlns="http://javafx.com/javafx/15.0.1"
-      fx:controller="com.sakurawald.ui.controller.AppController">
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="314.0" prefWidth="431.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.sakurawald.ui.controller.AppController">
     <children>
-        <TitledPane animated="false" collapsible="false" layoutX="8.0" layoutY="6.0" prefHeight="80.0" prefWidth="468.0"
-                    text="Player">
+        <TitledPane animated="false" collapsible="false" layoutX="8.0" layoutY="6.0" prefHeight="80.0" prefWidth="416.0" text="Player">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
-                        <Label layoutX="14.0" layoutY="21.0" text="Race: "/>
-                        <ComboBox fx:id="combobox_choose_player_race" layoutX="48.0" layoutY="17.0" prefHeight="23.0"
-                                  prefWidth="99.0"/>
+                        <Label layoutX="14.0" layoutY="21.0" text="Race: " />
+                        <ComboBox fx:id="combobox_choose_player_race" layoutX="48.0" layoutY="17.0" prefHeight="23.0" prefWidth="99.0" />
                     </children>
                 </AnchorPane>
             </content>
         </TitledPane>
-        <TitledPane animated="false" collapsible="false" layoutX="8.0" layoutY="86.0" prefHeight="99.0"
-                    prefWidth="468.0" text="Opponent">
+        <TitledPane animated="false" collapsible="false" layoutX="8.0" layoutY="86.0" prefHeight="99.0" prefWidth="416.0" text="Opponent">
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="95.0" prefWidth="466.0">
                     <children>
-                        <TabPane prefHeight="80.0" prefWidth="468.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane prefHeight="80.0" prefWidth="416.0" tabClosingPolicy="UNAVAILABLE">
                             <tabs>
                                 <Tab fx:id="tab_opponent_computer" text="Vs Computer">
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="76.0" prefWidth="468.0">
                                             <children>
-                                                <Label layoutX="14.0" layoutY="17.0" text="Race: "/>
-                                                <ComboBox fx:id="combobox_choose_opponent_computer_race" layoutX="48.0"
-                                                          layoutY="13.0" prefHeight="23.0" prefWidth="99.0"/>
-                                                <Label layoutX="176.0" layoutY="18.0" text="Difficulty: "/>
-                                                <ComboBox fx:id="combobox_choose_opponent_computer_difficulty"
-                                                          layoutX="234.0" layoutY="13.0" prefHeight="23.0"
-                                                          prefWidth="123.0"/>
+                                                <Label layoutX="14.0" layoutY="17.0" text="Race: " />
+                                                <ComboBox fx:id="combobox_choose_opponent_computer_race" layoutX="48.0" layoutY="13.0" prefHeight="23.0" prefWidth="99.0" />
+                                                <Label layoutX="176.0" layoutY="18.0" text="Difficulty: " />
+                                                <ComboBox fx:id="combobox_choose_opponent_computer_difficulty" layoutX="234.0" layoutY="13.0" prefHeight="23.0" prefWidth="123.0" />
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -45,12 +45,10 @@
                                     <content>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                             <children>
-                                                <Label layoutX="260.0" layoutY="17.0" text="Race: "/>
-                                                <ComboBox fx:id="combobox_choose_opponent_ai_race" layoutX="294.0"
-                                                          layoutY="13.0" prefHeight="23.0" prefWidth="99.0"/>
-                                                <Label layoutX="14.0" layoutY="17.0" text="Bot: "/>
-                                                <ComboBox fx:id="combobox_choose_opponent_ai_bot" layoutX="48.0"
-                                                          layoutY="13.0" prefHeight="23.0" prefWidth="182.0"/>
+                                                <Label layoutX="260.0" layoutY="17.0" text="Race: " />
+                                                <ComboBox fx:id="combobox_choose_opponent_ai_race" layoutX="294.0" layoutY="13.0" prefHeight="23.0" prefWidth="99.0" />
+                                                <Label layoutX="14.0" layoutY="17.0" text="Bot: " />
+                                                <ComboBox fx:id="combobox_choose_opponent_ai_bot" layoutX="48.0" layoutY="13.0" prefHeight="23.0" prefWidth="182.0" />
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -61,17 +59,18 @@
                 </AnchorPane>
             </content>
         </TitledPane>
-        <Button fx:id="button_launch" layoutX="8.0" layoutY="228.0" mnemonicParsing="false"
-                onAction="#button_launch_onAction" onMouseClicked="#button_launch_onMouseClicked" prefHeight="80.0"
-                prefWidth="468.0" text="Launch">
+        <Button fx:id="button_launch" layoutX="94.0" layoutY="228.0" mnemonicParsing="false" onAction="#button_launch_onAction" onMouseClicked="#button_launch_onMouseClicked" prefHeight="80.0" prefWidth="330.0" text="Launch">
             <font>
-                <Font size="28.0"/>
+                <Font size="28.0" />
             </font>
         </Button>
-        <Label layoutX="8.0" layoutY="200.0" text="Map: "/>
-        <TextField fx:id="textfield_map" layoutX="42.0" layoutY="196.0" prefHeight="23.0" prefWidth="364.0"
-                   promptText="Select A LocalMap or BattleNetMap"/>
-        <Button fx:id="button_browse" layoutX="411.0" layoutY="196.0" mnemonicParsing="false"
-                onAction="#button_browse_onAction" prefHeight="23.0" prefWidth="65.0" text="Browse"/>
+        <Label layoutX="8.0" layoutY="200.0" text="Map: " />
+        <TextField fx:id="textfield_map" layoutX="42.0" layoutY="196.0" prefHeight="23.0" prefWidth="310.0" promptText="Select A LocalMap or BattleNetMap Name" />
+        <Button fx:id="button_browse" layoutX="359.0" layoutY="196.0" mnemonicParsing="false" onAction="#button_browse_onAction" prefHeight="23.0" prefWidth="65.0" text="Browse" />
+      <Button fx:id="button_settings" layoutX="8.0" layoutY="228.0" mnemonicParsing="false" onAction="#button_settings_onAction" prefHeight="80.0" prefWidth="80.0" text="Settings">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
     </children>
 </Pane>
