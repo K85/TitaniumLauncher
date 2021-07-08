@@ -22,7 +22,7 @@ public class TimeClocker {
     }
 
     public int getPassedSeconds() {
-        return (int) (System.currentTimeMillis() - this.startTimestamp) / 1000;
+        return (int) (System.currentTimeMillis() - this.startTimestamp + offsetTimestamp) / 1000;
     }
 
     public Pair<Integer, Integer> getPassedTime() {

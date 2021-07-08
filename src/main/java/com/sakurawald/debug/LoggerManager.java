@@ -1,7 +1,7 @@
 package com.sakurawald.debug;
 
 
-import com.sakurawald.file.FileManager;
+import com.sakurawald.file.config.FileManager;
 import com.sakurawald.util.JavaFxUtil;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;

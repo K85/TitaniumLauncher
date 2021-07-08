@@ -10,6 +10,7 @@ import com.sakurawald.Titanium;
 import com.sakurawald.bot.EmptyBot;
 import com.sakurawald.bot.TitaniumBot;
 import com.sakurawald.debug.LoggerManager;
+import com.sakurawald.file.config.FileManager;
 import com.sakurawald.launcher.LaunchThread;
 import com.sakurawald.launcher.Launcher;
 import com.sakurawald.plugin.PluginBase;
@@ -89,7 +90,7 @@ public class AppController extends Controller {
         // Add Listeners.
         stage.setOnCloseRequest(windowEvent -> {
             // Save All Settings.
-            App.settingsInstance.getController().saveAllSettings();
+            App.settingsInstance.getController().saveUIConfig();
 
             // Update.
             App.settingsInstance.emptyInstance();
@@ -247,6 +248,9 @@ public class AppController extends Controller {
     @FXML
     void initialize() {
 
+        /** Load UIConfig. **/
+        loadUIConfig();
+
         // Add Races to Race Combobox.
         initRaceCombobox(combobox_choose_player_race);
         initRaceCombobox(combobox_choose_opponent_ai_race);
@@ -263,6 +267,17 @@ public class AppController extends Controller {
     void button_launch_onMouseClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.MIDDLE && event.getClickCount() == 2)
             JavaFxUtil.DialogTools.informationDialog("Author: Teeth\nOpen Source: github.com/K85");
+    }
+
+    public void saveUIConfig() {
+        // Save UIConfig from Memory to Disk.
+        FileManager.applicationConfig_File.saveMemoryConfigToDisk();
+    }
+
+    public void loadUIConfig() {
+
+        //TODO MainInterface UI
+
     }
 
 

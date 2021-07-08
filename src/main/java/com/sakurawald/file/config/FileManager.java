@@ -1,9 +1,8 @@
-package com.sakurawald.file;
+package com.sakurawald.file.config;
 
 
 import com.sakurawald.Titanium;
 import com.sakurawald.debug.LoggerManager;
-import com.sakurawald.util.FileUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +28,7 @@ public class FileManager {
         // ApplicationConfig.json
         LoggerManager.getLogger().info("Init >> ApplicationConfig.json");
         try {
-            applicationConfig_File = new ApplicationConfig_File(FileManager.getApplicationConfigPath(),
+            applicationConfig_File = new ApplicationConfig_File(ConfigFile.getApplicationConfigPath(),
                     "ApplicationConfig.json", ApplicationConfig_Data.class);
             applicationConfig_File.init();
         } catch (IllegalAccessException | IOException e) {
@@ -38,10 +37,5 @@ public class FileManager {
 
     }
 
-    private static String getApplicationConfigPath() {
-        String result;
-        result = FileUtil.getJavaRunPath();
-        result = result + File.separator + "Titanium" + File.separator + "Configs" + File.separator;
-        return result;
-    }
+
 }

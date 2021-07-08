@@ -1,4 +1,4 @@
-package com.sakurawald.file;
+package com.sakurawald.file.config;
 
 public class ApplicationConfig_File extends ConfigFile<ApplicationConfig_Data> {
 

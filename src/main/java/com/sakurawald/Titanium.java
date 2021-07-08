@@ -1,8 +1,8 @@
 package com.sakurawald;
 
 import com.sakurawald.debug.LoggerManager;
-import com.sakurawald.file.ConfigFile;
-import com.sakurawald.file.FileManager;
+import com.sakurawald.file.config.ConfigFile;
+import com.sakurawald.file.config.FileManager;
 import com.sakurawald.plugin.PluginManager;
 import com.sakurawald.ui.App;
 import com.sakurawald.util.FileUtil;

@@ -1,4 +1,4 @@
-package com.sakurawald.file;
+package com.sakurawald.file.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,6 +8,8 @@ import com.sakurawald.util.FileUtil;
 import java.io.*;
 
 public class ConfigFile<DO> {
+
+
 
     private Class<DO> configDataClass = null;
     private String filePath = null;
@@ -24,14 +26,14 @@ public class ConfigFile<DO> {
     }
 
     /**
-     * @return 该应用程序的[配置文件存储路径].
+     * @return 该应用程序的[数据文件存储路径].
      */
-    public static String getApplicationConfigPath() {
+    public static String getApplicationBasePath() {
 
         String result = null;
 
         result = FileUtil.getJavaRunPath();
-        result = result + "\\Titanium\\";
+        result = result +  File.separator + "Titanium" + File.separator;
 
         return result;
     }
@@ -137,7 +139,7 @@ public class ConfigFile<DO> {
         FileOutputStream fos;
         try {
             fos = new FileOutputStream(file);
-            Gson gson = new GsonBuilder().serializeNulls().create();
+            Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
             String nowJson = gson.toJson(this.getConfigDataClassInstance());
 
             fos.write(nowJson.getBytes());
@@ -170,6 +172,19 @@ public class ConfigFile<DO> {
             LoggerManager.reportException(e);
         }
 
+    }
+
+    public static class DefaultValue {
+        public static final int INT_DEFAULT_VALUE = -1;
+        public static final String STRING_DEFAULT_VALUE = null;
+        public static final double DOUBLE_DEFAULT_VALUE = -1;
+        public static final boolean BOOLEAN_DEFAULT_VALUE = true;
+    }
+
+
+
+    public static String getApplicationConfigPath() {
+        return ConfigFile.getApplicationBasePath() + "Configs" + File.separator;
     }
 
 }

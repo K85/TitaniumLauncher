@@ -21,17 +21,17 @@
             <content>
               <AnchorPane layoutX="431.0" layoutY="314.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <CheckBox fx:id="checkbox_real_time" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#checkbox_real_time_onAction" prefHeight="16.0" prefWidth="85.0" text="Real Time" />
-                        <CheckBox fx:id="checkbox_multi_threads" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" onAction="#checkbox_multi_threads_onAction" text="Multi Threads" />
-                        <CheckBox fx:id="checkbox_raw_affects_selection" layoutX="15.0" layoutY="75.0" mnemonicParsing="false" onAction="#checkbox_raw_affects_selection_onAction" text="Raw Affects Selection" />
-                        <CheckBox fx:id="checkbox_show_burrowed" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkbox_show_burrowed_onAction" text="Show Burrowed" />
-                        <CheckBox fx:id="checkbox_show_cloaked" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkbox_show_cloaked_onAction" text="Show Cloaked" />
-                        <CheckBox fx:id="checkbox_trace" layoutX="15.0" layoutY="165.0" mnemonicParsing="false" onAction="#checkbox_trace_onAction" text="Trace" />
-                        <CheckBox fx:id="checkbox_verbose" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#checkbox_verbose_onAction" text="Verbose" />
-                        <CheckBox fx:id="checkbox_needs_support_dir" layoutX="15.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkbox_needs_support_dir_onAction" text="Needs Support Dir" />
-                        <CheckBox fx:id="checkbox_raw_crop_to_playable_area" layoutX="15.0" layoutY="255.0" mnemonicParsing="false" onAction="#checkbox_raw_crop_to_playable_area_onAction" text="Raw Crop To Playable Area" />
-                        <CheckBox fx:id="checkbox_use_generallized_ability_id" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#checkbox_use_generallized_ability_id_onAction" text="Use Generalized AbilityID" />
-                        <TextField fx:id="textfield_load_settings" layoutX="318.0" layoutY="12.0" onAction="#textfield_load_settings_onAction" prefHeight="23.0" prefWidth="295.0" promptText="default" />
+                        <CheckBox fx:id="checkbox_client_real_time" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#checkbox_client_real_time_onAction" prefHeight="16.0" prefWidth="85.0" text="Real Time" />
+                        <CheckBox fx:id="checkbox_client_multi_threads" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" onAction="#checkbox_client_multi_threads_onAction" text="Multi Threads" />
+                        <CheckBox fx:id="checkbox_client_raw_affects_selection" layoutX="15.0" layoutY="75.0" mnemonicParsing="false" onAction="#checkbox_client_raw_affects_selection_onAction" text="Raw Affects Selection" />
+                        <CheckBox fx:id="checkbox_client_show_burrowed" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkbox_client_show_burrowed_onAction" text="Show Burrowed" />
+                        <CheckBox fx:id="checkbox_client_show_cloaked" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkbox_client_show_cloaked_onAction" text="Show Cloaked" />
+                        <CheckBox fx:id="checkbox_client_trace" layoutX="15.0" layoutY="165.0" mnemonicParsing="false" onAction="#checkbox_client_trace_onAction" text="Trace" />
+                        <CheckBox fx:id="checkbox_client_verbose" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#checkbox_client_verbose_onAction" text="Verbose" />
+                        <CheckBox fx:id="checkbox_client_needs_support_dir" layoutX="15.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkbox_client_needs_support_dir_onAction" text="Needs Support Dir" />
+                        <CheckBox fx:id="checkbox_client_raw_crop_to_playable_area" layoutX="15.0" layoutY="255.0" mnemonicParsing="false" onAction="#checkbox_client_raw_crop_to_playable_area_onAction" text="Raw Crop To Playable Area" />
+                        <CheckBox fx:id="checkbox_client_use_generalized_ability_id" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#checkbox_client_use_generalized_ability_id_onAction" text="Use Generalized AbilityID" />
+                        <TextField fx:id="textfield_client_load_settings" layoutX="318.0" layoutY="12.0" onKeyTyped="#textfield_client_load_settings_onKeyTyped" prefHeight="23.0" prefWidth="295.0" promptText="default" />
                         <Label layoutX="230.0" layoutY="15.0" text="Load Settings" />
                         <Label layoutX="230.0" layoutY="45.0" text="Data Dir" />
                         <Label layoutX="230.0" layoutY="75.0" text="Data Version" />
@@ -41,21 +41,21 @@
                         <Label layoutX="230.0" layoutY="225.0" text="Step Size" />
                         <Label layoutX="230.0" layoutY="255.0" text="Timeout MS" />
                         <Label layoutX="230.0" layoutY="195.0" text="Temp Dir" />
-                        <TextField fx:id="textfield_window_location_left" layoutX="350.0" layoutY="282.0" onAction="#textfield_window_location_left_onAction" prefHeight="23.0" prefWidth="60.0" promptText="default" />
+                        <TextField fx:id="textfield_client_window_location_left" layoutX="350.0" layoutY="282.0" onKeyTyped="#textfield_client_window_location_left_onKeyTyped" prefHeight="23.0" prefWidth="60.0" promptText="default" />
                         <Label layoutX="230.0" layoutY="315.0" text="Window Size" />
-                        <TextField fx:id="textfield_window_location_top" layoutX="429.0" layoutY="282.0" onAction="#textfield_window_location_top_onAction" prefHeight="23.0" prefWidth="60.0" promptText="default" />
+                        <TextField fx:id="textfield_client_window_location_top" layoutX="429.0" layoutY="282.0" onKeyTyped="#textfield_client_window_location_top_onKeyTyped" prefHeight="23.0" prefWidth="60.0" promptText="default" />
                         <Label layoutX="230.0" layoutY="285.0" text="Window Location" />
-                        <TextField fx:id="textfield_data_dir" layoutX="318.0" layoutY="42.0" onAction="#textfield_data_dir_onAction" prefHeight="23.0" prefWidth="295.0" promptText="default" />
-                        <TextField fx:id="textfield_data_version" layoutX="318.0" layoutY="72.0" onAction="#textfield_data_version_onAction" prefHeight="23.0" prefWidth="295.0" promptText="default" />
-                        <TextField fx:id="textfield_egl_path" layoutX="318.0" layoutY="102.0" onAction="#textfield_egl_path_onAction" prefHeight="23.0" prefWidth="295.0" promptText="default" />
-                        <TextField fx:id="textfield_os_mesa_path" layoutX="318.0" layoutY="131.0" onAction="#textfield_os_mesa_path_onAction" prefHeight="23.0" prefWidth="295.0" promptText="default" />
-                        <TextField fx:id="textfieldd_process_path" layoutX="318.0" layoutY="162.0" onAction="#textfieldd_process_path_onAction" prefHeight="23.0" prefWidth="295.0" promptText="default" />
-                        <TextField fx:id="textfield_temp_dir" layoutX="318.0" layoutY="192.0" onAction="#textfield_temp_dir_onAction" prefHeight="23.0" prefWidth="295.0" promptText="default" />
-                        <TextField fx:id="textfield_step_size" layoutX="318.0" layoutY="222.0" onAction="#textfield_step_size_onAction" prefHeight="23.0" prefWidth="295.0" promptText="default" />
-                        <TextField fx:id="textfield_timeout_ms" layoutX="318.0" layoutY="252.0" onAction="#textfield_timeout_ms_onAction" prefHeight="23.0" prefWidth="295.0" promptText="default" />
+                        <TextField fx:id="textfield_client_data_dir" layoutX="318.0" layoutY="42.0" onKeyTyped="#textfield_client_data_dir_onKeyTyped" prefHeight="23.0" prefWidth="295.0" promptText="default" />
+                        <TextField fx:id="textfield_client_data_version" layoutX="318.0" layoutY="72.0" onKeyTyped="#textfield_client_data_version_onKeyTyped" prefHeight="23.0" prefWidth="295.0" promptText="default" />
+                        <TextField fx:id="textfield_client_egl_path" layoutX="318.0" layoutY="102.0" onKeyTyped="#textfield_client_egl_path_onKeyTyped" prefHeight="23.0" prefWidth="295.0" promptText="default" />
+                        <TextField fx:id="textfield_client_os_mesa_path" layoutX="318.0" layoutY="131.0" onKeyTyped="#textfield_client_os_mesa_path_onKeyTyped" prefHeight="23.0" prefWidth="295.0" promptText="default" />
+                        <TextField fx:id="textfield_client_process_path" layoutX="318.0" layoutY="162.0" onKeyTyped="#textfield_client_process_path_onKeyTyped" prefHeight="23.0" prefWidth="295.0" promptText="default" />
+                        <TextField fx:id="textfield_client_temp_dir" layoutX="318.0" layoutY="192.0" onKeyTyped="#textfield_client_temp_dir_onKeyTyped" prefHeight="23.0" prefWidth="295.0" promptText="default" />
+                        <TextField fx:id="textfield_client_step_size" layoutX="318.0" layoutY="222.0" onKeyTyped="#textfield_client_step_size_onKeyTyped" prefHeight="23.0" prefWidth="295.0" promptText="default" />
+                        <TextField fx:id="textfield_client_timeout_ms" layoutX="318.0" layoutY="252.0" onKeyTyped="#textfield_client_timeout_ms_onKeyTyped" prefHeight="23.0" prefWidth="295.0" promptText="default" />
                         <Label layoutX="415.0" layoutY="285.0" text="×" />
-                        <TextField fx:id="textfield_window_size_width" layoutX="350.0" layoutY="312.0" onAction="#textfield_window_size_width_onAction" prefHeight="23.0" prefWidth="60.0" promptText="default" />
-                        <TextField fx:id="textfield_window_size_height" layoutX="429.0" layoutY="312.0" onAction="#textfield_window_size_height_onAction" prefHeight="23.0" prefWidth="60.0" promptText="default" />
+                        <TextField fx:id="textfield_client_window_size_width" layoutX="350.0" layoutY="312.0" onKeyTyped="#textfield_client_window_size_width_onKeyTyped" prefHeight="23.0" prefWidth="60.0" promptText="default" />
+                        <TextField fx:id="textfield_client_window_size_height" layoutX="429.0" layoutY="312.0" onKeyTyped="#textfield_client_window_size_height_onKeyTyped" prefHeight="23.0" prefWidth="60.0" promptText="default" />
                         <Label layoutX="415.0" layoutY="315.0" text="×" />
                      </children></AnchorPane>
             </content>
@@ -70,20 +70,20 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="613.0">
                                        <children>
-                                          <CheckBox fx:id="checkbox_disable_war_fog" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#checkbox_disable_war_fog_onAction" text="Disable War Fog" />
-                                          <CheckBox fx:id="checkbox_god_mode" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#checkbox_god_mode_onAction" text="God Mode" />
-                                          <CheckBox fx:id="checkbox_enemy_control" layoutX="15.0" layoutY="255.0" mnemonicParsing="false" onAction="#checkbox_enemy_control_onAction" text="Enemy Control" />
-                                          <CheckBox fx:id="checkbox_give_all_resources" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#checkbox_give_all_resources_onAction" text="Give All Resources" />
-                                          <CheckBox fx:id="checkbox_fast_build" layoutX="15.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkbox_fast_build_onAction" text="Fast Build" />
-                                          <CheckBox fx:id="checkbox_give_all_tech" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" onAction="#checkbox_give_all_tech_onAction" text="Give All Tech" />
-                                          <CheckBox fx:id="checkbox_give_all_upgrades" layoutX="15.0" layoutY="75.0" mnemonicParsing="false" onAction="#checkbox_give_all_upgrades_onAction" text="Give All Upgrades" />
-                                          <CheckBox fx:id="checkbox_ignore_food" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkbox_ignore_food_onAction" text="Ignore Food" />
-                                          <CheckBox fx:id="checkbox_ignore_mineral" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkbox_ignore_mineral_onAction" text="Ignore Mineral" />
-                                          <CheckBox fx:id="checkbox_ignore_resource_cost" layoutX="15.0" layoutY="165.0" mnemonicParsing="false" onAction="#checkbox_ignore_resource_cost_onAction" text="Ignore Resource Cost" />
-                                          <CheckBox fx:id="checkbox_no_cooldowns" layoutX="15.0" layoutY="315.0" mnemonicParsing="false" onAction="#checkbox_no_cooldowns_onAction" text="No Cooldowns" />
+                                          <CheckBox fx:id="checkbox_cheat_disable_war_fog" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#checkbox_cheat_disable_war_fog_onAction" text="Disable War Fog" />
+                                          <CheckBox fx:id="checkbox_cheat_god_mode" layoutX="15.0" layoutY="285.0" mnemonicParsing="false" onAction="#checkbox_cheat_god_mode_onAction" text="God Mode" />
+                                          <CheckBox fx:id="checkbox_cheat_enemy_control" layoutX="15.0" layoutY="255.0" mnemonicParsing="false" onAction="#checkbox_cheat_enemy_control_onAction" text="Enemy Control" />
+                                          <CheckBox fx:id="checkbox_cheat_give_all_resources" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#checkbox_cheat_give_all_resources_onAction" text="Give All Resources" />
+                                          <CheckBox fx:id="checkbox_cheat_fast_build" layoutX="15.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkbox_cheat_fast_build_onAction" text="Fast Build" />
+                                          <CheckBox fx:id="checkbox_cheat_give_all_tech" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" onAction="#checkbox_cheat_give_all_tech_onAction" text="Give All Tech" />
+                                          <CheckBox fx:id="checkbox_cheat_give_all_upgrades" layoutX="15.0" layoutY="75.0" mnemonicParsing="false" onAction="#checkbox_cheat_give_all_upgrades_onAction" text="Give All Upgrades" />
+                                          <CheckBox fx:id="checkbox_cheat_ignore_food" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkbox_cheat_ignore_food_onAction" text="Ignore Food" />
+                                          <CheckBox fx:id="checkbox_cheat_ignore_mineral" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkbox_cheat_ignore_mineral_onAction" text="Ignore Mineral" />
+                                          <CheckBox fx:id="checkbox_cheat_ignore_resource_cost" layoutX="15.0" layoutY="165.0" mnemonicParsing="false" onAction="#checkbox_cheat_ignore_resource_cost_onAction" text="Ignore Resource Cost" />
+                                          <CheckBox fx:id="checkbox_cheat_no_cooldowns" layoutX="15.0" layoutY="315.0" mnemonicParsing="false" onAction="#checkbox_cheat_no_cooldowns_onAction" text="No Cooldowns" />
                                           <Label layoutX="15.0" layoutY="345.0" text="Score" />
-                                          <TextField fx:id="textfield_score" layoutX="49.0" layoutY="342.0" onAction="#textfield_score_onAction" prefHeight="23.0" prefWidth="86.0" />
-                                          <Button fx:id="button_score_set" layoutX="142.0" layoutY="342.0" mnemonicParsing="false" onAction="#button_score_set_onAction" text="Set" />
+                                          <TextField fx:id="textfield_cheat_score" layoutX="49.0" layoutY="342.0" onKeyTyped="#textfield_cheat_score_onKeyTyped" prefHeight="23.0" prefWidth="86.0" />
+                                          <Button fx:id="button_cheat_score_set" layoutX="142.0" layoutY="342.0" mnemonicParsing="false" onAction="#button_cheat_score_set_onAction" text="Set" />
                                        </children>
                                     </AnchorPane>
                               </content>
@@ -97,16 +97,16 @@
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="83.0" prefWidth="609.0">
                                                    <children>
                                                       <Label layoutX="15.0" layoutY="15.0" text="Unit Type: " />
-                                                      <ComboBox fx:id="combobox_createunit_unittype" layoutX="77.0" layoutY="11.0" onAction="#combobox_createunit_unittype_onAction" prefWidth="150.0" />
+                                                      <ComboBox fx:id="combobox_cheat_createunit_unittype" layoutX="77.0" layoutY="11.0" onAction="#combobox_cheat_createunit_unittype_onAction" prefWidth="150.0" />
                                                       <Label layoutX="15.0" layoutY="45.0" text="X: " />
-                                                      <TextField fx:id="textfield_createunit_x" layoutX="30.0" layoutY="42.0" onAction="#textfield_createunit_x_onAction" prefHeight="23.0" prefWidth="73.0" />
+                                                      <TextField fx:id="textfield_cheat_createunit_x" layoutX="30.0" layoutY="42.0" onKeyTyped="#textfield_cheat_createunit_x_onKeyTyped" prefHeight="23.0" prefWidth="73.0" />
                                                       <Label layoutX="110.0" layoutY="45.0" text="Y: " />
-                                                      <TextField fx:id="textfield_createunit_y" layoutX="125.0" layoutY="42.0" onAction="#textfield_createunit_y_onAction" prefHeight="23.0" prefWidth="73.0" />
-                                                      <Button fx:id="button_createunit_create" layoutX="450.0" layoutY="10.0" mnemonicParsing="false" onAction="#button_createunit_create_onAction" prefHeight="55.0" prefWidth="180.0" text="Create" textFill="#1cbf1f" />
+                                                      <TextField fx:id="textfield_createunit_y" layoutX="125.0" layoutY="42.0" onKeyTyped="#textfield_cheat_createunit_y_onKeyTyped" prefHeight="23.0" prefWidth="73.0" />
+                                                      <Button fx:id="button_cheat_createunit_create" layoutX="450.0" layoutY="10.0" mnemonicParsing="false" onAction="#button_cheat_createunit_create_onAction" prefHeight="55.0" prefWidth="180.0" text="Create" textFill="#1cbf1f" />
                                                       <Label layoutX="205.0" layoutY="45.0" text="Var1: " />
-                                                      <TextField fx:id="textfield_createunit_var1" layoutX="238.0" layoutY="42.0" onAction="#textfield_createunit_var1_onAction" prefHeight="23.0" prefWidth="73.0" />
+                                                      <TextField fx:id="textfield_cheat_createunit_var1" layoutX="238.0" layoutY="42.0" onKeyTyped="#textfield_cheat_createunit_var1_onKeyTyped" prefHeight="23.0" prefWidth="73.0" />
                                                       <Label layoutX="320.0" layoutY="45.0" text="Var2: " />
-                                                      <TextField fx:id="textfield_createunit_var2" layoutX="355.0" layoutY="42.0" onAction="#textfield_createunit_var2_onAction" prefHeight="23.0" prefWidth="73.0" />
+                                                      <TextField fx:id="textfield_cheat_createunit_var2" layoutX="355.0" layoutY="42.0" onKeyTyped="#textfield_cheat_createunit_var2_onKeyTyped" prefHeight="23.0" prefWidth="73.0" />
                                                    </children>
                                                 </AnchorPane>
                                             </content>
@@ -116,10 +116,10 @@
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="274.0" prefWidth="642.0">
                                                    <children>
                                                       <Label layoutX="15.0" layoutY="15.0" text="Target Unit: " />
-                                                      <ComboBox fx:id="combobox_killunit_target_unit" layoutX="86.0" layoutY="12.0" onAction="#combobox_killunit_target_unit_onAction" prefWidth="150.0" />
-                                                      <Button fx:id="button_killunit_kill" layoutX="251.0" layoutY="12.0" mnemonicParsing="false" onAction="#button_killunit_kill_onAction" prefHeight="19.0" prefWidth="93.0" text="Kill" textFill="RED" />
+                                                      <ComboBox fx:id="combobox_cheat_killunit_target_unit" layoutX="86.0" layoutY="12.0" onAction="#combobox_cheat_killunit_target_unit_onAction" prefWidth="150.0" />
+                                                      <Button fx:id="button_cheat_killunit_kill" layoutX="251.0" layoutY="12.0" mnemonicParsing="false" onAction="#button_cheat_killunit_kill_onAction" prefHeight="19.0" prefWidth="93.0" text="Kill" textFill="RED" />
                                                       <Label layoutX="15.0" layoutY="45.0" text="Unit Info: " />
-                                                      <TextArea fx:id="textarea_killunit_unitinfo" layoutX="15.0" layoutY="65.0" prefHeight="94.0" prefWidth="330.0" wrapText="true" />
+                                                      <TextArea fx:id="textarea_cheat_killunit_unitinfo" layoutX="15.0" layoutY="65.0" prefHeight="94.0" prefWidth="330.0" wrapText="true" />
                                                    </children>
                                                 </AnchorPane>
                                             </content>
@@ -133,24 +133,24 @@
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="613.0">
                                        <children>
                                           <Label layoutX="15.0" layoutY="15.0" text="Draw Graphics Type: " />
-                                          <ComboBox fx:id="combobox_draw_graphics_type" layoutX="140.0" layoutY="12.0" onAction="#combobox_draw_graphics_type_onAction" prefHeight="23.0" prefWidth="90.0" />
+                                          <ComboBox fx:id="combobox_cheat_draw_graphics_type" layoutX="140.0" layoutY="12.0" onAction="#combobox_cheat_draw_graphics_type_onAction" prefHeight="23.0" prefWidth="90.0" />
                                           <Label layoutX="15.0" layoutY="75.0" text="Point 1: " />
                                           <Label layoutX="15.0" layoutY="105.0" text="Point 2: " />
-                                          <TextField fx:id="textfield_draw_point1_x" layoutX="64.0" layoutY="72.0" onAction="#textfield_draw_point1_x_onAction" prefHeight="23.0" prefWidth="57.0" promptText="50" />
-                                          <TextField fx:id="textfield_draw_point1_y" layoutX="138.0" layoutY="72.0" onAction="#textfield_draw_point1_y_onAction" prefHeight="23.0" prefWidth="57.0" promptText="50" />
+                                          <TextField fx:id="textfield_cheat_draw_point1_x" layoutX="64.0" layoutY="72.0" onKeyTyped="#textfield_cheat_draw_point1_x_onKeyTyped" prefHeight="23.0" prefWidth="57.0" promptText="50" />
+                                          <TextField fx:id="textfield_cheat_draw_point1_y" layoutX="138.0" layoutY="72.0" onKeyTyped="#textfield_cheat_draw_point1_y_onKeyTyped" prefHeight="23.0" prefWidth="57.0" promptText="50" />
                                           <Label layoutX="125.0" layoutY="75.0" text="×" />
-                                          <TextField fx:id="textfield_draw_point2_x" layoutX="64.0" layoutY="102.0" onAction="#textfield_draw_point2_x_onAction" prefHeight="23.0" prefWidth="57.0" promptText="100" />
-                                          <TextField fx:id="textfield_draw_point2_y" layoutX="138.0" layoutY="102.0" onAction="#textfield_draw_point2_y_onAction" prefHeight="23.0" prefWidth="57.0" promptText="100" />
+                                          <TextField fx:id="textfield_cheat_draw_point2_x" layoutX="64.0" layoutY="102.0" onKeyTyped="#textfield_cheat_draw_point2_x_onKeyTyped" prefHeight="23.0" prefWidth="57.0" promptText="100" />
+                                          <TextField fx:id="textfield_cheat_draw_point2_y" layoutX="138.0" layoutY="102.0" onKeyTyped="#textfield_cheat_draw_point2_y_onKeyTyped" prefHeight="23.0" prefWidth="57.0" promptText="100" />
                                           <Label layoutX="125.0" layoutY="105.0" text="×" />
                                           <Label layoutX="15.0" layoutY="135.0" text="Value: " />
-                                          <TextField fx:id="textfield_draw_value" layoutX="64.0" layoutY="132.0" onAction="#textfield_draw_value_onAction" prefHeight="23.0" prefWidth="132.0" promptText="10" />
-                                          <Button fx:id="button_draw" layoutX="253.0" layoutY="12.0" mnemonicParsing="false" onAction="#button_draw_onAction" prefHeight="144.0" prefWidth="378.0" text="Draw" textFill="#fc6900" />
+                                          <TextField fx:id="textfield_cheat_draw_value" layoutX="64.0" layoutY="132.0" onKeyTyped="#textfield_cheat_draw_value_onKeyTyped" prefHeight="23.0" prefWidth="132.0" promptText="10" />
+                                          <Button fx:id="button_cheat_draw" layoutX="253.0" layoutY="12.0" mnemonicParsing="false" onAction="#button_cheat_draw_onAction" prefHeight="144.0" prefWidth="378.0" text="Draw" textFill="#fc6900" />
                                           <Label layoutX="15.0" layoutY="45.0" text="Color: " />
-                                          <TextField fx:id="textfield_draw_color_r" layoutX="53.0" layoutY="42.0" onAction="#textfield_draw_color_r_onAction" prefHeight="23.0" prefWidth="45.0" promptText="R" />
-                                          <TextField fx:id="textfield_draw_color_g" layoutX="113.0" layoutY="42.0" onAction="#textfield_draw_color_g_onAction" prefHeight="23.0" prefWidth="45.0" promptText="G" />
+                                          <TextField fx:id="textfield_cheat_draw_color_r" layoutX="53.0" layoutY="42.0" onKeyTyped="#textfield_cheat_draw_color_r_onKeyTyped" prefHeight="23.0" prefWidth="45.0" promptText="R" />
+                                          <TextField fx:id="textfield_cheat_draw_color_g" layoutX="113.0" layoutY="42.0" onKeyTyped="#textfield_cheat_draw_color_g_onKeyTyped" prefHeight="23.0" prefWidth="45.0" promptText="G" />
                                           <Label layoutX="101.0" layoutY="45.0" text="×" />
                                           <Label layoutX="161.0" layoutY="45.0" text="×" />
-                                          <TextField fx:id="textfield_draw_color_b" layoutX="174.0" layoutY="42.0" onAction="#textfield_draw_color_b_onAction" prefHeight="23.0" prefWidth="45.0" promptText="B" />
+                                          <TextField fx:id="textfield_cheat_draw_color_b" layoutX="174.0" layoutY="42.0" onKeyTyped="#textfield_cheat_draw_color_b_onKeyTyped" prefHeight="23.0" prefWidth="45.0" promptText="B" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -166,9 +166,9 @@
                                                       <Label layoutX="15.0" layoutY="15.0" text="Life Percentage: " />
                                                       <Label layoutX="15.0" layoutY="45.0" text="Shield Percentage: " />
                                                       <Label layoutX="15.0" layoutY="75.0" text="Energy Percentage:" />
-                                                      <TextField fx:id="textfield_valuepercentagecontrol_lifepercentage" layoutX="111.0" layoutY="11.0" onAction="#textfield_valuepercentagecontrol_lifepercentage_onAction" prefHeight="23.0" prefWidth="54.0" promptText="1.0" />
-                                                      <TextField fx:id="textfield_valuepercentagecontrol_shieldpercentage" layoutX="126.0" layoutY="41.0" onAction="#textfield_valuepercentagecontrol_shieldpercentage_onAction" prefHeight="23.0" prefWidth="54.0" promptText="1.0" />
-                                                      <TextField fx:id="textfield_valuepercentagecontrol_energypercentage" layoutX="131.0" layoutY="71.0" onAction="#textfield_valuepercentagecontrol_energypercentage_onAction" prefHeight="23.0" prefWidth="54.0" promptText="1.0" />
+                                                      <TextField fx:id="textfield_cheat_valuepercentagecontrol_lifepercentage" layoutX="111.0" layoutY="11.0" onKeyTyped="#textfield_cheat_valuepercentagecontrol_lifepercentage_onKeyTyped" prefHeight="23.0" prefWidth="54.0" promptText="1.0" />
+                                                      <TextField fx:id="textfield_cheat_valuepercentagecontrol_shieldpercentage" layoutX="126.0" layoutY="41.0" onKeyTyped="#textfield_cheat_valuepercentagecontrol_shieldpercentage_onKeyTyped" prefHeight="23.0" prefWidth="54.0" promptText="1.0" />
+                                                      <TextField fx:id="textfield_cheat_valuepercentagecontrol_energypercentage" layoutX="131.0" layoutY="71.0" onKeyTyped="#textfield_cheat_valuepercentagecontrol_energypercentage_onKeyTyped" prefHeight="23.0" prefWidth="54.0" promptText="1.0" />
                                                    </children>
                                                 </AnchorPane>
                                             </content>
@@ -177,7 +177,7 @@
                                             <content>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="297.0" prefWidth="642.0">
                                                    <children>
-                                                      <ListView fx:id="list_valuespecificcontrol_unittypes" layoutX="15.0" layoutY="45.0" prefHeight="259.0" prefWidth="176.0" />
+                                                      <ListView fx:id="list_cheat_valuespecificcontrol_unittypes" layoutX="15.0" layoutY="45.0" prefHeight="259.0" prefWidth="176.0" />
                                                       <TitledPane animated="false" collapsible="false" layoutX="211.0" layoutY="15.0" prefHeight="289.0" prefWidth="411.0" text="Add Item">
                                                          <content>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -186,11 +186,11 @@
                                                                   <Label layoutX="15.0" layoutY="45.0" text="Life: " />
                                                                   <Label layoutX="15.0" layoutY="75.0" text="Shield: " />
                                                                   <Label layoutX="15.0" layoutY="105.0" text="Energy: " />
-                                                                  <TextField fx:id="text_valuespecificcontrol_additem_life" layoutX="82.0" layoutY="42.0" onAction="#text_valuespecificcontrol_additem_life_onAction" promptText="50" />
-                                                                  <TextField fx:id="text_valuespecificcontrol_additem_shield" layoutX="82.0" layoutY="72.0" onAction="#text_valuespecificcontrol_additem_shield_onAction" promptText="50" />
-                                                                  <TextField fx:id="text_valuespecificcontrol_additem_energy" layoutX="82.0" layoutY="102.0" onAction="#text_valuespecificcontrol_additem_energy_onAction" promptText="50" />
-                                                                  <ComboBox fx:id="combobox_valuespecificcontrol_additem_unittype" layoutX="82.0" layoutY="12.0" onAction="#combobox_valuespecificcontrol_additem_unittype_onAction" prefHeight="23.0" prefWidth="161.0" />
-                                                                  <Button fx:id="button_valuespecificcontrol_additem_add" layoutX="260.0" layoutY="12.0" mnemonicParsing="false" onAction="#button_valuespecificcontrol_additem_add_onAction" prefHeight="113.0" prefWidth="140.0" text="Add" />
+                                                                  <TextField fx:id="textfield_cheat_valuespecificcontrol_additem_life" layoutX="82.0" layoutY="42.0" onKeyTyped="#textfield_cheat_valuespecificcontrol_additem_life_onKeyTyped" promptText="50" />
+                                                                  <TextField fx:id="textfield_cheat_valuespecificcontrol_additem_shield" layoutX="82.0" layoutY="72.0" onKeyTyped="#textfield_cheat_valuespecificcontrol_additem_shield_onKeyTyped" promptText="50" />
+                                                                  <TextField fx:id="textfield_cheat_valuespecificcontrol_additem_energy" layoutX="82.0" layoutY="102.0" onKeyTyped="#textfield_cheat_valuespecificcontrol_additem_energy_onKeyTyped" promptText="50" />
+                                                                  <ComboBox fx:id="combobox_cheat_valuespecificcontrol_additem_unittype" layoutX="82.0" layoutY="12.0" onAction="#combobox_cheat_valuespecificcontrol_additem_unittype_onAction" prefHeight="23.0" prefWidth="161.0" />
+                                                                  <Button fx:id="button_cheat_valuespecificcontrol_additem_add" layoutX="260.0" layoutY="12.0" mnemonicParsing="false" onAction="#button_cheat_valuespecificcontrol_additem_add_onAction" prefHeight="113.0" prefWidth="140.0" text="Add" />
                                                                </children>
                                                             </AnchorPane>
                                                          </content>
@@ -219,14 +219,14 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="479.0" prefWidth="346.0">
                                  <children>
-                                    <CheckBox fx:id="checkbox_eventalert_idleworkeralert" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#checkbox_eventalert_idleworkeralert_onAction" text="Idle Worker Alert" />
-                                    <CheckBox fx:id="checkbox_eventalert_nucleardectectedalert" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" onAction="#checkbox_eventalert_nucleardectectedalert_onAction" text="Nuclear Launch Dectected Alert" />
-                                    <CheckBox fx:id="checkbox_eventalert_unitentervisionalert" layoutX="15.0" layoutY="75.0" mnemonicParsing="false" onAction="#checkbox_eventalert_unitentervisionalert_onAction" text="Unit Enter Vision Alert" />
-                                    <CheckBox fx:id="checkbox_eventalert_nydusdectectedalert" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkbox_eventalert_nydusdectectedalert_onAction" text="Nydus Dectected Alert" />
-                                    <CheckBox fx:id="checkbox_eventalert_unitcreatedalert" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkbox_eventalert_unitcreatedalert_onAction" text="Unit Created Alert" />
-                                    <CheckBox fx:id="checkbox_eventalert_unitdestroyalert" layoutX="15.0" layoutY="165.0" mnemonicParsing="false" onAction="#checkbox_eventalert_unitdestroyalert_onAction" text="Unit Destroy Alert" />
-                                    <CheckBox fx:id="checkbox_eventalert_upgradecompletedalert" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#checkbox_eventalert_upgradecompletedalert_onAction" text="Upgrade Completed Alert" />
-                                    <CheckBox fx:id="checkbox_eventalert_buildingcompletedalert" layoutX="15.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkbox_eventalert_buildingcompletedalert_onAction" text="Building Completed Alert" />
+                                    <CheckBox fx:id="checkbox_monitor_eventalert_idleworkeralert" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#checkbox_monitor_eventalert_idleworkeralert_onAction" text="Idle Worker Alert" />
+                                    <CheckBox fx:id="checkbox_monitor_eventalert_nuclearlaunchdetectedalert" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" onAction="#checkbox_monitor_eventalert_nucleardetectedalert_onAction" text="Nuclear Launch Detected Alert" />
+                                    <CheckBox fx:id="checkbox_monitor_eventalert_unitentervisionalert" layoutX="15.0" layoutY="75.0" mnemonicParsing="false" onAction="#checkbox_monitor_eventalert_unitentervisionalert_onAction" text="Unit Enter Vision Alert" />
+                                    <CheckBox fx:id="checkbox_monitor_eventalert_nydusdetectedalert" layoutX="15.0" layoutY="105.0" mnemonicParsing="false" onAction="#checkbox_monitor_eventalert_nydusdetectedalert_onAction" text="Nydus Detected Alert" />
+                                    <CheckBox fx:id="checkbox_monitor_eventalert_unitcreatedalert" layoutX="15.0" layoutY="135.0" mnemonicParsing="false" onAction="#checkbox_monitor_eventalert_unitcreatedalert_onAction" text="Unit Created Alert" />
+                                    <CheckBox fx:id="checkbox_monitor_eventalert_unitdestroyalert" layoutX="15.0" layoutY="165.0" mnemonicParsing="false" onAction="#checkbox_monitor_eventalert_unitdestroyalert_onAction" text="Unit Destroy Alert" />
+                                    <CheckBox fx:id="checkbox_monitor_eventalert_upgradecompletedalert" layoutX="15.0" layoutY="195.0" mnemonicParsing="false" onAction="#checkbox_monitor_eventalert_upgradecompletedalert_onAction" text="Upgrade Completed Alert" />
+                                    <CheckBox fx:id="checkbox_monitor_eventalert_buildingcompletedalert" layoutX="15.0" layoutY="225.0" mnemonicParsing="false" onAction="#checkbox_monitor_eventalert_buildingcompletedalert_onAction" text="Building Completed Alert" />
                                  </children>
                               </AnchorPane>
                           </content>

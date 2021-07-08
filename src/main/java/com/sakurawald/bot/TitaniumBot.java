@@ -1,8 +1,5 @@
 package com.sakurawald.bot;
 
-import SC2APIProtocol.Debug;
-import SC2APIProtocol.Sc2Api;
-import com.github.ocraft.s2client.bot.ClientEvents;
 import com.github.ocraft.s2client.bot.S2Agent;
 import com.github.ocraft.s2client.bot.S2ReplayObserver;
 import com.github.ocraft.s2client.bot.gateway.*;
@@ -16,6 +13,7 @@ import com.github.ocraft.s2client.protocol.spatial.Point;
 import com.github.ocraft.s2client.protocol.spatial.Point2d;
 import com.github.ocraft.s2client.protocol.spatial.PointI;
 import com.github.ocraft.s2client.protocol.unit.Unit;
+import com.sakurawald.Titanium;
 import com.sakurawald.debug.TimeClocker;
 import com.sakurawald.ui.bean.DebugTextQueue;
 import javafx.util.Pair;
@@ -26,10 +24,19 @@ import java.util.ArrayList;
 
 public class TitaniumBot extends S2Agent {
 
+    /** Currently running TitaniumBots. **/
+    private static ArrayList<TitaniumBot> titaniumBots = new ArrayList<>();
+
+    public TitaniumBot() {
+        getTitaniumBots().add(this);
+    }
+
+    public static ArrayList<TitaniumBot> getTitaniumBots() {
+        return titaniumBots;
+    }
+
     @Override
     public void onStep() {
-       // System.out.println("gamelLoop = " + this.observation().getGameLoop());
-
 
     }
 
@@ -49,7 +56,7 @@ public class TitaniumBot extends S2Agent {
     @Override
     public void onUnitEnterVision(UnitInPool unitInPool) {
         Pair<Integer, Integer> time =  timeClocker.getPassedTime();
-        String text =  time.getKey() + ":" + time.getValue() + unitInPool.getUnit().get().getType() + "进入了视野";
+        String text =  time.getKey() + ":" + time.getValue() + unitInPool.getUnit().get().getType() + "enter vision";
         debugTextQueue.addText(text);
 
         this.debug().debugTextOut(debugTextQueue.formatTexts(), Color.BLUE).sendDebug();
@@ -60,6 +67,8 @@ public class TitaniumBot extends S2Agent {
     public void onUnitCreated(UnitInPool unitInPool) {
         Unit unit = unitInPool.getUnit().get();
         Point point = unit.getPosition();
+
+
 
 
     }
@@ -74,8 +83,6 @@ public class TitaniumBot extends S2Agent {
 
     @Override
     public void onGameStart() {
-
-
 
         this.debug().debugGiveAllResources().sendDebug();
         this.debug().debugGiveAllResources().sendDebug();
