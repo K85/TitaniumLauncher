@@ -18,7 +18,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <children>
                         <Label layoutX="14.0" layoutY="21.0" text="Race: " />
-                        <ComboBox fx:id="combobox_choose_player_race" layoutX="48.0" layoutY="17.0" prefHeight="23.0" prefWidth="99.0" />
+                        <ComboBox fx:id="combobox_choose_player_race" layoutX="48.0" layoutY="17.0" onAction="#combobox_choose_player_race_onAction" prefHeight="23.0" prefWidth="99.0" />
                     </children>
                 </AnchorPane>
             </content>
@@ -34,9 +34,9 @@
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="76.0" prefWidth="468.0">
                                             <children>
                                                 <Label layoutX="14.0" layoutY="17.0" text="Race: " />
-                                                <ComboBox fx:id="combobox_choose_opponent_computer_race" layoutX="48.0" layoutY="13.0" prefHeight="23.0" prefWidth="99.0" />
+                                                <ComboBox fx:id="combobox_choose_opponent_computer_race" layoutX="48.0" layoutY="13.0" onAction="#combobox_choose_opponent_computer_race_onAction" prefHeight="23.0" prefWidth="99.0" />
                                                 <Label layoutX="176.0" layoutY="18.0" text="Difficulty: " />
-                                                <ComboBox fx:id="combobox_choose_opponent_computer_difficulty" layoutX="234.0" layoutY="13.0" prefHeight="23.0" prefWidth="123.0" />
+                                                <ComboBox fx:id="combobox_choose_opponent_computer_difficulty" layoutX="234.0" layoutY="13.0" onAction="#combobox_choose_opponent_computer_difficulty_onAction" prefHeight="23.0" prefWidth="123.0" />
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -46,9 +46,9 @@
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                             <children>
                                                 <Label layoutX="260.0" layoutY="17.0" text="Race: " />
-                                                <ComboBox fx:id="combobox_choose_opponent_ai_race" layoutX="294.0" layoutY="13.0" prefHeight="23.0" prefWidth="99.0" />
+                                                <ComboBox fx:id="combobox_choose_opponent_ai_race" layoutX="294.0" layoutY="13.0" onAction="#combobox_choose_opponent_ai_race_onAction" prefHeight="23.0" prefWidth="99.0" />
                                                 <Label layoutX="14.0" layoutY="17.0" text="Bot: " />
-                                                <ComboBox fx:id="combobox_choose_opponent_ai_bot" layoutX="48.0" layoutY="13.0" prefHeight="23.0" prefWidth="182.0" />
+                                                <ComboBox fx:id="combobox_choose_opponent_ai_bot" layoutX="48.0" layoutY="13.0" onAction="#combobox_choose_opponent_ai_bot_onAction" prefHeight="23.0" prefWidth="182.0" />
                                             </children>
                                         </AnchorPane>
                                     </content>
@@ -65,7 +65,7 @@
             </font>
         </Button>
         <Label layoutX="8.0" layoutY="200.0" text="Map: " />
-        <TextField fx:id="textfield_map" layoutX="42.0" layoutY="196.0" prefHeight="23.0" prefWidth="310.0" promptText="Select A LocalMap or BattleNetMap Name" />
+        <TextField fx:id="textfield_map" layoutX="42.0" layoutY="196.0" onKeyTyped="#textfield_map_onKeyTyped" prefHeight="23.0" prefWidth="310.0" promptText="Select A LocalMap or BattleNetMap Name" />
         <Button fx:id="button_browse" layoutX="359.0" layoutY="196.0" mnemonicParsing="false" onAction="#button_browse_onAction" prefHeight="23.0" prefWidth="65.0" text="Browse" />
       <Button fx:id="button_settings" layoutX="8.0" layoutY="228.0" mnemonicParsing="false" onAction="#button_settings_onAction" prefHeight="80.0" prefWidth="80.0" text="Settings">
          <font>

@@ -3,6 +3,7 @@ package com.sakurawald.file.config;
 
 import com.github.ocraft.s2client.protocol.game.Difficulty;
 import com.github.ocraft.s2client.protocol.game.Race;
+import com.sakurawald.plugin.PluginBase;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,7 @@ public class ApplicationConfig_Data {
             public Vs_AI Vs_AI = new Vs_AI();
             public static class Vs_AI {
                 public Race race = Race.TERRAN;
+                public PluginBase bot = null;
             }
 
         }

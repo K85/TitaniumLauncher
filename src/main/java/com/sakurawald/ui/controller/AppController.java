@@ -27,6 +27,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
@@ -37,6 +38,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+@SuppressWarnings("unchecked")
 public class AppController extends Controller {
 
     @FXML
@@ -131,6 +133,9 @@ public class AppController extends Controller {
 
         // Set ChooseMap.
         if (chooseMap != null) this.textfield_map.setText(chooseMap.getAbsolutePath());
+
+        // Save UI Config.
+        this.textfield_map_onKeyTyped(null);
     }
 
     private void disableControl() {
@@ -248,9 +253,6 @@ public class AppController extends Controller {
     @FXML
     void initialize() {
 
-        /** Load UIConfig. **/
-        loadUIConfig();
-
         // Add Races to Race Combobox.
         initRaceCombobox(combobox_choose_player_race);
         initRaceCombobox(combobox_choose_opponent_ai_race);
@@ -261,12 +263,51 @@ public class AppController extends Controller {
 
         // Add Plugins.
         initPluginsCombobox();
+
+        /** Load UIConfig. **/
+        loadUIConfig();
     }
 
     @FXML
     void button_launch_onMouseClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.MIDDLE && event.getClickCount() == 2)
             JavaFxUtil.DialogTools.informationDialog("Author: Teeth\nOpen Source: github.com/K85");
+    }
+
+    @FXML
+    void combobox_choose_opponent_ai_bot_onAction(ActionEvent event) {
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_AI.bot = ((ComboBox<PluginBase>) event.getSource()).getSelectionModel().getSelectedItem();
+        saveUIConfig();
+    }
+
+    @FXML
+    void combobox_choose_opponent_ai_race_onAction(ActionEvent event) {
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_AI.race = ((ComboBox<Race>) event.getSource()).getSelectionModel().getSelectedItem();
+        saveUIConfig();
+    }
+
+    @FXML
+    void combobox_choose_opponent_computer_difficulty_onAction(ActionEvent event) {
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_Computer.difficulty = ((ComboBox<Difficulty>) event.getSource()).getSelectionModel().getSelectedItem();
+        saveUIConfig();
+    }
+
+    @FXML
+    void combobox_choose_opponent_computer_race_onAction(ActionEvent event) {
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_Computer.race = ((ComboBox<Race>) event.getSource()).getSelectionModel().getSelectedItem();
+        saveUIConfig();
+    }
+
+    @FXML
+    void combobox_choose_player_race_onAction(ActionEvent event) {
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Player.race = ((ComboBox<Race>) event.getSource()).getSelectionModel().getSelectedItem();
+        saveUIConfig();
+    }
+
+    @FXML
+    void textfield_map_onKeyTyped(KeyEvent event) {
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Base.map = textfield_map.getText();
+        saveUIConfig();
     }
 
     public void saveUIConfig() {
@@ -276,7 +317,13 @@ public class AppController extends Controller {
 
     public void loadUIConfig() {
 
-        //TODO MainInterface UI
+        this.combobox_choose_player_race.getSelectionModel().select(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Player.race);
+        this.combobox_choose_opponent_computer_race.getSelectionModel().select(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_Computer.race);
+        this.combobox_choose_opponent_computer_difficulty.getSelectionModel().select(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_Computer.difficulty);
+        this.combobox_choose_opponent_ai_race.getSelectionModel().select(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_AI.race);
+        this.combobox_choose_opponent_ai_bot.getSelectionModel().select(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_AI.bot);
+
+        this.textfield_map.setText(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.map);
 
     }
 
