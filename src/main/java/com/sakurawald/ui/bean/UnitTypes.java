@@ -5,7 +5,6 @@ public enum UnitTypes {
     ;
     private String typeName;
 
-
     UnitTypes(String typeName) {
         this.typeName = typeName;
     }

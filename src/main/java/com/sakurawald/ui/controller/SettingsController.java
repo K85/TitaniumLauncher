@@ -1,6 +1,7 @@
 package com.sakurawald.ui.controller;
 
 import com.github.ocraft.s2client.protocol.data.UnitType;
+import com.github.ocraft.s2client.protocol.data.Units;
 import com.github.ocraft.s2client.protocol.debug.Color;
 import com.github.ocraft.s2client.protocol.spatial.Point;
 import com.github.ocraft.s2client.protocol.spatial.Point2d;
@@ -8,6 +9,7 @@ import com.github.ocraft.s2client.protocol.unit.Unit;
 import com.sakurawald.bot.TitaniumBot;
 import com.sakurawald.file.config.FileManager;
 import com.sakurawald.ui.bean.DrawGraphicsType;
+import com.sakurawald.ui.bean.UnitWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,6 +19,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 
 public class SettingsController extends Controller {
 
@@ -141,13 +145,13 @@ public class SettingsController extends Controller {
     private Button button_cheat_createunit_create;
 
     @FXML
-    private TextField textfield_cheat_createunit_var1;
+    private TextField textfield_cheat_createunit_alliance;
 
     @FXML
-    private TextField textfield_cheat_createunit_var2;
+    private TextField textfield_cheat_createunit_amount;
 
     @FXML
-    private ComboBox<Unit> combobox_cheat_killunit_target_unit;
+    public ComboBox<UnitWrapper> combobox_cheat_killunit_target_unit;
 
     @FXML
     private Button button_cheat_killunit_kill;
@@ -250,11 +254,11 @@ public class SettingsController extends Controller {
         UnitType unitType = combobox_cheat_createunit_unittype.getSelectionModel().getSelectedItem();
         float x = Float.parseFloat(textfield_cheat_createunit_x.getText());
         float y = Float.parseFloat(textfield_cheat_createunit_y.getText());
-        int var1 = Integer.parseInt(textfield_cheat_createunit_var1.getText());
-        int var2 = Integer.parseInt(textfield_cheat_createunit_var2.getText());
+        int alliance = Integer.parseInt(textfield_cheat_createunit_alliance.getText());
+        int amount = Integer.parseInt(textfield_cheat_createunit_amount.getText());
 
         TitaniumBot.getTitaniumBots().forEach(bot -> {
-            bot.debug().debugCreateUnit(unitType, Point2d.of(x, y), var1, var2);
+            bot.debug().debugCreateUnit(unitType, Point2d.of(x, y), alliance, amount).sendDebug();
         });
     }
 
@@ -302,9 +306,9 @@ public class SettingsController extends Controller {
 
     @FXML
     void button_cheat_killunit_kill_onAction(ActionEvent event) {
-        Unit unit = combobox_cheat_killunit_target_unit.getSelectionModel().getSelectedItem();
+        UnitWrapper unitWrapper = combobox_cheat_killunit_target_unit.getSelectionModel().getSelectedItem();
         TitaniumBot.getTitaniumBots().forEach(bot -> {
-            bot.debug().debugKillUnit(unit);
+            bot.debug().debugKillUnit(unitWrapper.getUnit()).sendDebug();
         });
     }
 
@@ -608,12 +612,12 @@ public class SettingsController extends Controller {
     }
 
     @FXML
-    void textfield_cheat_createunit_var1_onKeyTyped(KeyEvent event) {
+    void textfield_cheat_createunit_alliance_onKeyTyped(KeyEvent event) {
 
     }
 
     @FXML
-    void textfield_cheat_createunit_var2_onKeyTyped(KeyEvent event) {
+    void textfield_cheat_createunit_amount_onKeyTyped(KeyEvent event) {
 
     }
 
@@ -783,6 +787,30 @@ public class SettingsController extends Controller {
         saveUIConfig();
     }
 
+    @FXML
+    void combobox_cheat_killunit_target_unit_onMouseClicked(MouseEvent event) {
+
+        if (event.getButton() == MouseButton.SECONDARY) {
+            this.combobox_cheat_killunit_target_unit.getItems().clear();
+
+            for (TitaniumBot titaniumBot : TitaniumBot.getTitaniumBots()) {
+                titaniumBot.observation().getUnits().forEach(unitInPool -> {
+                    Unit unit = unitInPool.unit();
+                    if (unit != null) {
+                        this.combobox_cheat_killunit_target_unit.getItems().add(new UnitWrapper(unit));
+                    }
+                });
+
+
+            }
+
+
+        }
+
+
+    }
+
+
     public void saveUIConfig() {
         // Save UIConfig from Memory to Disk.
         FileManager.applicationConfig_File.saveMemoryConfigToDisk();
@@ -866,12 +894,20 @@ public class SettingsController extends Controller {
 
         /* Load DrawGraphicsTypes. */
         loadDrawGraphicsTypes();
+
+        /* Load UnitTypes */
+        loadCreateUnitUnitTypes();
     }
 
     private void loadDrawGraphicsTypes() {
         this.combobox_cheat_draw_graphics_type.getItems().addAll(DrawGraphicsType.values());
         this.combobox_cheat_draw_graphics_type.getSelectionModel().selectFirst();
         this.resetUIWithDrawGraphicsType();
+    }
+
+    private void loadCreateUnitUnitTypes() {
+        this.combobox_cheat_createunit_unittype.getItems().addAll(Units.values());
+        this.combobox_cheat_createunit_unittype.getSelectionModel().selectFirst();
     }
 
 }
