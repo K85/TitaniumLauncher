@@ -1,9 +1,11 @@
 package com.sakurawald.bot;
 
+import SC2APIProtocol.Data;
 import com.github.ocraft.s2client.bot.S2Agent;
 import com.github.ocraft.s2client.bot.S2ReplayObserver;
 import com.github.ocraft.s2client.bot.gateway.*;
 import com.github.ocraft.s2client.protocol.data.UnitType;
+import com.github.ocraft.s2client.protocol.data.UnitTypeData;
 import com.github.ocraft.s2client.protocol.debug.*;
 import com.github.ocraft.s2client.protocol.game.Observer;
 import com.github.ocraft.s2client.protocol.game.PlayerInfoExtra;
@@ -15,6 +17,7 @@ import com.github.ocraft.s2client.protocol.spatial.PointI;
 import com.github.ocraft.s2client.protocol.unit.Unit;
 import com.sakurawald.Titanium;
 import com.sakurawald.debug.TimeClocker;
+import com.sakurawald.file.config.FileManager;
 import com.sakurawald.ui.bean.DebugTextQueue;
 import javafx.util.Pair;
 import org.mvel2.debug.DebugTools;
@@ -65,11 +68,26 @@ public class TitaniumBot extends S2Agent {
 
     @Override
     public void onUnitCreated(UnitInPool unitInPool) {
-        Unit unit = unitInPool.getUnit().get();
-        Point point = unit.getPosition();
 
+        Unit unit = unitInPool.unit();
+        if (unit == null) return;
 
+        /* Value Control */
+        float rate;
+        if ((rate = FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.lifePercentage)
+        != 1.0F) {
+            this.debug().debugSetLife(unit.getHealth().get() * rate, unit);
+        }
 
+        if ((rate = FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.shieldPercentage)
+                != 1.0F) {
+            this.debug().debugSetShields(unit.getShield().get() * rate, unit);
+        }
+
+        if ((rate = FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.energyPercentage)
+                != 1.0F) {
+            this.debug().debugSetEnergy(unit.getEnergy().get() * rate, unit);
+        }
 
     }
 

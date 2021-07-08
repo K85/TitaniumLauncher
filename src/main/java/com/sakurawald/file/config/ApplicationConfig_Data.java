@@ -52,15 +52,15 @@ public class ApplicationConfig_Data {
         public static class Client {
 
             public Boolean realTime = true;
-            public Boolean multiThreads = true;
-            public Boolean rawAffectsSelection = true;
-            public Boolean showBurrowed = true;
-            public Boolean showCloaked = true;
-            public Boolean trace = true;
-            public Boolean verbose = true;
+            public Boolean multiThreads = false;
+            public Boolean rawAffectsSelection = false;
+            public Boolean showBurrowed = false;
+            public Boolean showCloaked = false;
+            public Boolean trace = false;
+            public Boolean verbose = false;
             public Boolean needsSupportDir = true;
-            public Boolean rawCropToPlayableArea = true;
-            public Boolean useGeneralizedAbilityID = true;
+            public Boolean rawCropToPlayableArea = false;
+            public Boolean useGeneralizedAbilityID = false;
 
             public String loadSettings = null;
             public String dataDir = null;
@@ -69,7 +69,7 @@ public class ApplicationConfig_Data {
             public String osMesaPath = null;
             public String processPath = null;
             public String tempDir = null;
-            public Integer stepSize = ConfigFile.DefaultValue.INT_DEFAULT_VALUE;
+            public Integer stepSize = 1;
             public Integer timeoutMS = ConfigFile.DefaultValue.INT_DEFAULT_VALUE;
 
             public WindowLocation WindowLocation = new WindowLocation();
@@ -102,20 +102,21 @@ public class ApplicationConfig_Data {
                 public Boolean enemyControl = false;
                 public Boolean godMode = false;
                 public Boolean noCooldowns = false;
-                public Integer score = 10000;
+                public Float score = 10000F;
             }
 
             public Draw Draw = new Draw();
             public static class Draw {
                 public String drawType = null;
-                public Integer colorR = 50;
-                public Integer colorG = 50;
-                public Integer colorB = 50;
+                public Integer colorR = 255;
+                public Integer colorG = 0;
+                public Integer colorB = 0;
                 public Integer pointI_x = 50;
                 public Integer pointI_y = 50;
                 public Integer pointII_x = 100;
                 public Integer pointII_y = 100;
-                public Integer value = 10;
+                public Object valueI = 10F;
+                public Object valueII = 1F;
             }
 
             public ValueControl ValueControl = new ValueControl();
@@ -123,9 +124,9 @@ public class ApplicationConfig_Data {
 
                 public ValuePercentageControl ValuePercentageControl = new ValuePercentageControl();
                 public static class ValuePercentageControl {
-                    public Double lifePercentage = 1.0;
-                    public Double shieldPercentage = 1.0;
-                    public Double energyPercentage = 1.0;
+                    public Float lifePercentage = 1.0F;
+                    public Float shieldPercentage = 1.0F;
+                    public Float energyPercentage = 1.0F;
                 }
 
                 public ValueSpecificControl ValueSpecificControl = new ValueSpecificControl();

@@ -1,6 +1,5 @@
 package com.sakurawald.ui.controller;
 
-import com.github.ocraft.s2client.api.controller.S2Controller;
 import com.github.ocraft.s2client.bot.S2Coordinator;
 import com.github.ocraft.s2client.bot.setting.PlayerSettings;
 import com.github.ocraft.s2client.bot.syntax.SettingsSyntax;
@@ -11,7 +10,6 @@ import com.sakurawald.bot.EmptyBot;
 import com.sakurawald.bot.TitaniumBot;
 import com.sakurawald.debug.LoggerManager;
 import com.sakurawald.file.config.FileManager;
-import com.sakurawald.launcher.LaunchThread;
 import com.sakurawald.launcher.Launcher;
 import com.sakurawald.plugin.PluginBase;
 import com.sakurawald.plugin.PluginManager;
@@ -36,7 +34,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")
 public class AppController extends Controller {
@@ -192,7 +189,7 @@ public class AppController extends Controller {
             try {
                 // Vs Computer.
                 if (tab_opponent_computer.isSelected()) {
-                    settingsSyntax = S2Coordinator.setup().setRealtime(true);
+                    settingsSyntax = Launcher.getSettingsSyntaxAccordingToConfig();
                     player = S2Coordinator.createParticipant(this.combobox_choose_player_race.getSelectionModel().getSelectedItem(), new TitaniumBot(), "Player");
                     opponent = S2Coordinator.createComputer(this.combobox_choose_opponent_computer_race.getSelectionModel().getSelectedItem(),
                             this.combobox_choose_opponent_computer_difficulty.getSelectionModel().getSelectedItem(), "Opponent");

@@ -142,8 +142,8 @@
                                           <TextField fx:id="textfield_cheat_draw_point2_x" layoutX="64.0" layoutY="102.0" onKeyTyped="#textfield_cheat_draw_point2_x_onKeyTyped" prefHeight="23.0" prefWidth="57.0" promptText="100" />
                                           <TextField fx:id="textfield_cheat_draw_point2_y" layoutX="138.0" layoutY="102.0" onKeyTyped="#textfield_cheat_draw_point2_y_onKeyTyped" prefHeight="23.0" prefWidth="57.0" promptText="100" />
                                           <Label layoutX="125.0" layoutY="105.0" text="×" />
-                                          <Label layoutX="15.0" layoutY="135.0" text="Value: " />
-                                          <TextField fx:id="textfield_cheat_draw_value" layoutX="64.0" layoutY="132.0" onKeyTyped="#textfield_cheat_draw_value_onKeyTyped" prefHeight="23.0" prefWidth="132.0" promptText="10" />
+                                          <Label layoutX="15.0" layoutY="135.0" text="Value 1: " />
+                                          <TextField fx:id="textfield_cheat_draw_value1" layoutX="64.0" layoutY="132.0" onKeyTyped="#textfield_cheat_draw_value1_onKeyTyped" prefHeight="23.0" prefWidth="132.0" promptText="10 or Hi" />
                                           <Button fx:id="button_cheat_draw" layoutX="253.0" layoutY="12.0" mnemonicParsing="false" onAction="#button_cheat_draw_onAction" prefHeight="144.0" prefWidth="378.0" text="Draw" textFill="#fc6900" />
                                           <Label layoutX="15.0" layoutY="45.0" text="Color: " />
                                           <TextField fx:id="textfield_cheat_draw_color_r" layoutX="53.0" layoutY="42.0" onKeyTyped="#textfield_cheat_draw_color_r_onKeyTyped" prefHeight="23.0" prefWidth="45.0" promptText="R" />
@@ -151,6 +151,8 @@
                                           <Label layoutX="101.0" layoutY="45.0" text="×" />
                                           <Label layoutX="161.0" layoutY="45.0" text="×" />
                                           <TextField fx:id="textfield_cheat_draw_color_b" layoutX="174.0" layoutY="42.0" onKeyTyped="#textfield_cheat_draw_color_b_onKeyTyped" prefHeight="23.0" prefWidth="45.0" promptText="B" />
+                                          <Label layoutX="15.0" layoutY="165.0" text="Value 2: " />
+                                          <TextField fx:id="textfield_cheat_draw_value2" layoutX="64.0" layoutY="162.0" onKeyTyped="#textfield_cheat_draw_value2_onKeyTyped" prefHeight="23.0" prefWidth="132.0" promptText="1" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -213,7 +215,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <CheckBox fx:id="checkbox_monitor_events" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" text="Monitor Events" />
+                        <CheckBox fx:id="checkbox_monitor_events" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#checkbox_monitor_events_onAction" text="Monitor Events" />
                         <TextArea fx:id="textarea_monitor" layoutX="15.0" layoutY="39.0" prefHeight="470.0" prefWidth="261.0" />
                         <TitledPane animated="false" collapsible="false" layoutX="296.0" prefHeight="520.0" prefWidth="348.0" text="Event Alert">
                           <content>
