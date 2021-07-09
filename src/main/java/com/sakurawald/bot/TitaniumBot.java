@@ -191,10 +191,8 @@ public class TitaniumBot extends S2Agent {
 
     @Override
     public void onGameStart() {
-
         /* Quick Cheat. */
         CheatCommands.quickCheatAccordingToConfig();
-
     }
 
 

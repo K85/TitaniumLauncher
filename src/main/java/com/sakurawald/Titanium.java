@@ -40,10 +40,10 @@ public class Titanium {
     }
 
     public static String getLauncherMapsPath() {
-        return ConfigFile.getApplicationConfigPath() + "Maps\\";
+        return ConfigFile.getApplicationBasePath() + "Maps\\";
     }
 
     public static String getLauncherPluginsPath() {
-        return ConfigFile.getApplicationConfigPath() + "Plugins\\";
+        return ConfigFile.getApplicationBasePath() + "Plugins\\";
     }
 }
