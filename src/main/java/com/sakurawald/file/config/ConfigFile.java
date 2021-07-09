@@ -1,14 +1,15 @@
 package com.sakurawald.file.config;
 
+import com.github.ocraft.s2client.protocol.data.UnitType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sakurawald.debug.LoggerManager;
+import com.sakurawald.file.config.adapter.UnitTypeAdapter;
 import com.sakurawald.util.FileUtil;
 
 import java.io.*;
 
 public class ConfigFile<DO> {
-
 
 
     private Class<DO> configDataClass = null;
@@ -33,9 +34,13 @@ public class ConfigFile<DO> {
         String result = null;
 
         result = FileUtil.getJavaRunPath();
-        result = result +  File.separator + "Titanium" + File.separator;
+        result = result + File.separator + "Titanium" + File.separator;
 
         return result;
+    }
+
+    public static String getApplicationConfigPath() {
+        return ConfigFile.getApplicationBasePath() + "Configs" + File.separator;
     }
 
     public boolean isInitialized() {
@@ -107,7 +112,6 @@ public class ConfigFile<DO> {
         this.initialized = true;
     }
 
-
     public boolean isConfigExistOnDisk() {
         File file = new File(filePath + fileName);
         return file.exists();
@@ -119,7 +123,7 @@ public class ConfigFile<DO> {
         try {
             reader = new BufferedReader(new FileReader(this.getFile()));
 
-            this.configDataClassInstance = new Gson().fromJson(reader,
+            this.configDataClassInstance = new GsonBuilder().registerTypeAdapter(UnitType.class, new UnitTypeAdapter()).create().fromJson(reader,
                     this.configDataClass);
         } catch (FileNotFoundException e) {
             LoggerManager.reportException(e);
@@ -179,12 +183,6 @@ public class ConfigFile<DO> {
         public static final String STRING_DEFAULT_VALUE = null;
         public static final double DOUBLE_DEFAULT_VALUE = -1;
         public static final boolean BOOLEAN_DEFAULT_VALUE = true;
-    }
-
-
-
-    public static String getApplicationConfigPath() {
-        return ConfigFile.getApplicationBasePath() + "Configs" + File.separator;
     }
 
 }

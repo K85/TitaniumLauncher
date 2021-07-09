@@ -4,51 +4,54 @@ package com.sakurawald.file.config;
 import com.github.ocraft.s2client.protocol.game.Difficulty;
 import com.github.ocraft.s2client.protocol.game.Race;
 import com.sakurawald.plugin.PluginBase;
+import com.sakurawald.ui.bean.UnitValueSetter;
 
 import java.util.ArrayList;
 
 public class ApplicationConfig_Data {
 
     public Debug Debug = new Debug();
+    public Base Base = new Base();
+    public Settings Settings = new Settings();
 
     public static class Debug {
         public Boolean enable = true;
     }
 
-    public Base Base = new Base();
     public static class Base {
 
         public Player Player = new Player();
+        public Opponent Opponent = new Opponent();
+        public String map = null;
+
         public static class Player {
             public Race race = Race.TERRAN;
         }
 
-        public Opponent Opponent = new Opponent();
         public static class Opponent {
 
             public Vs_Computer Vs_Computer = new Vs_Computer();
+            public Vs_AI Vs_AI = new Vs_AI();
+
             public static class Vs_Computer {
                 public Race race = Race.TERRAN;
                 public Difficulty difficulty = Difficulty.MEDIUM;
             }
 
-            public Vs_AI Vs_AI = new Vs_AI();
             public static class Vs_AI {
                 public Race race = Race.TERRAN;
                 public PluginBase bot = null;
             }
 
         }
-
-        public String map = null;
     }
 
-
-
-    public Settings Settings = new Settings();
     public static class Settings {
 
         public Client Client = new Client();
+        public Cheat Cheat = new Cheat();
+        public Monitor Monitor = new Monitor();
+
         public static class Client {
 
             public Boolean realTime = true;
@@ -73,12 +76,13 @@ public class ApplicationConfig_Data {
             public Integer timeoutMS = ConfigFile.DefaultValue.INT_DEFAULT_VALUE;
 
             public WindowLocation WindowLocation = new WindowLocation();
+            public WindowSize WindowSize = new WindowSize();
+
             public static class WindowLocation {
                 public Integer left = ConfigFile.DefaultValue.INT_DEFAULT_VALUE;
                 public Integer top = ConfigFile.DefaultValue.INT_DEFAULT_VALUE;
             }
 
-            public  WindowSize WindowSize = new WindowSize();
             public static class WindowSize {
                 public Integer width = ConfigFile.DefaultValue.INT_DEFAULT_VALUE;
                 public Integer height = ConfigFile.DefaultValue.INT_DEFAULT_VALUE;
@@ -86,10 +90,12 @@ public class ApplicationConfig_Data {
 
         }
 
-        public Cheat Cheat = new Cheat();
         public static class Cheat {
 
             public Command Command = new Command();
+            public Draw Draw = new Draw();
+            public ValueControl ValueControl = new ValueControl();
+
             public static class Command {
                 public Boolean disableWarFog = false;
                 public Boolean giveAllTech = false;
@@ -105,7 +111,6 @@ public class ApplicationConfig_Data {
                 public Float score = 10000F;
             }
 
-            public Draw Draw = new Draw();
             public static class Draw {
                 public String drawType = null;
                 public Integer colorR = 255;
@@ -119,21 +124,22 @@ public class ApplicationConfig_Data {
                 public Object valueII = 1F;
             }
 
-            public ValueControl ValueControl = new ValueControl();
             public static class ValueControl {
 
                 public ValuePercentageControl ValuePercentageControl = new ValuePercentageControl();
+                public ValueSpecificControl ValueSpecificControl = new ValueSpecificControl();
+
                 public static class ValuePercentageControl {
                     public Float lifePercentage = 1.0F;
                     public Float shieldPercentage = 1.0F;
                     public Float energyPercentage = 1.0F;
                 }
 
-                public ValueSpecificControl ValueSpecificControl = new ValueSpecificControl();
                 public static class ValueSpecificControl {
-                    public ArrayList<String> addedUnitTypeList = new ArrayList<>();
+                    public ArrayList<UnitValueSetter> addedUnitTypeList = new ArrayList<>();
 
                     public AddItem AddItem = new AddItem();
+
                     public static class AddItem {
                         public Integer life = 50;
                         public Integer shield = 50;
@@ -146,12 +152,12 @@ public class ApplicationConfig_Data {
 
         }
 
-        public Monitor Monitor = new Monitor();
         public static class Monitor {
 
             public Boolean monitor_events = true;
 
             public EventAlert EventAlert = new EventAlert();
+
             public static class EventAlert {
                 public Boolean idleWorkerAlert = false;
                 public Boolean nuclearLaunchDetectedAlert = false;

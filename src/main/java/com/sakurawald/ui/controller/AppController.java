@@ -38,6 +38,8 @@ import java.io.IOException;
 @SuppressWarnings("unchecked")
 public class AppController extends Controller {
 
+    private static final String BUTTON_LAUNCH_TEXT_LAUNCH = "Launch";
+    private static final String BUTTON_LAUNCH_TEXT_STOP_GAME = "Stop";
     @FXML
     public ComboBox<Race> combobox_choose_opponent_ai_race;
     @FXML
@@ -47,23 +49,19 @@ public class AppController extends Controller {
     @FXML
     public ComboBox<Race> combobox_choose_player_race;
     @FXML
+    public TextField textfield_map;
+    @FXML
     private ComboBox<Race> combobox_choose_opponent_computer_race;
     @FXML
     private ComboBox<Difficulty> combobox_choose_opponent_computer_difficulty;
-    @FXML
-    public TextField textfield_map;
     @FXML
     private Tab tab_opponent_computer;
     @FXML
     private Tab tab_opponent_ai;
     @FXML
     private Button button_browse;
-
     @FXML
     private Button button_settings;
-
-    private static final String BUTTON_LAUNCH_TEXT_LAUNCH = "Launch";
-    private static final String BUTTON_LAUNCH_TEXT_STOP_GAME = "Stop";
 
     @FXML
     void button_settings_onAction(ActionEvent event) {
@@ -114,7 +112,6 @@ public class AppController extends Controller {
         }
 
     }
-
 
 
     @FXML

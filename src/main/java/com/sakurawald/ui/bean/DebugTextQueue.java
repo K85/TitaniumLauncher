@@ -2,7 +2,6 @@ package com.sakurawald.ui.bean;
 
 import java.util.Deque;
 import java.util.LinkedList;
-import java.util.Queue;
 
 public class DebugTextQueue {
 
@@ -23,7 +22,9 @@ public class DebugTextQueue {
 
     public String formatTexts() {
         StringBuilder sb = new StringBuilder();
-        textQueue.forEach(text -> {sb.append(text).append("\n");});
+        textQueue.forEach(text -> {
+            sb.append(text).append("\n");
+        });
         return sb.toString();
     }
 

@@ -5,154 +5,114 @@ import com.github.ocraft.s2client.protocol.data.Units;
 import com.github.ocraft.s2client.protocol.debug.Color;
 import com.github.ocraft.s2client.protocol.spatial.Point;
 import com.github.ocraft.s2client.protocol.spatial.Point2d;
+import com.github.ocraft.s2client.protocol.unit.Alliance;
 import com.github.ocraft.s2client.protocol.unit.Unit;
 import com.sakurawald.bot.TitaniumBot;
 import com.sakurawald.file.config.FileManager;
+import com.sakurawald.ui.bean.CheatCommands;
 import com.sakurawald.ui.bean.DrawGraphicsType;
+import com.sakurawald.ui.bean.UnitValueSetter;
 import com.sakurawald.ui.bean.UnitWrapper;
+import com.sakurawald.util.JavaFxUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
+import java.util.ArrayList;
+
 public class SettingsController extends Controller {
 
     @FXML
+    public ComboBox<UnitWrapper> combobox_cheat_killunit_target_unit;
+    @FXML
     private CheckBox checkbox_client_real_time;
-
     @FXML
     private CheckBox checkbox_client_multi_threads;
-
     @FXML
     private CheckBox checkbox_client_raw_affects_selection;
-
     @FXML
     private CheckBox checkbox_client_show_burrowed;
-
     @FXML
     private CheckBox checkbox_client_show_cloaked;
-
     @FXML
     private CheckBox checkbox_client_trace;
-
     @FXML
     private CheckBox checkbox_client_verbose;
-
     @FXML
     private CheckBox checkbox_client_needs_support_dir;
-
     @FXML
     private CheckBox checkbox_client_raw_crop_to_playable_area;
-
     @FXML
     private CheckBox checkbox_client_use_generalized_ability_id;
-
     @FXML
     private TextField textfield_client_load_settings;
-
     @FXML
     private TextField textfield_client_window_location_left;
-
     @FXML
     private TextField textfield_client_window_location_top;
-
     @FXML
     private TextField textfield_client_data_dir;
-
     @FXML
     private TextField textfield_client_data_version;
-
     @FXML
     private TextField textfield_client_egl_path;
-
     @FXML
     private TextField textfield_client_os_mesa_path;
-
     @FXML
     private TextField textfield_client_process_path;
-
     @FXML
     private TextField textfield_client_temp_dir;
-
     @FXML
     private TextField textfield_client_step_size;
-
     @FXML
     private TextField textfield_client_timeout_ms;
-
     @FXML
     private TextField textfield_client_window_size_width;
-
     @FXML
     private TextField textfield_client_window_size_height;
-
     @FXML
     private CheckBox checkbox_cheat_disable_war_fog;
-
     @FXML
     private CheckBox checkbox_cheat_god_mode;
-
     @FXML
     private CheckBox checkbox_cheat_enemy_control;
-
     @FXML
     private CheckBox checkbox_cheat_give_all_resources;
-
     @FXML
     private CheckBox checkbox_cheat_fast_build;
-
     @FXML
     private CheckBox checkbox_cheat_give_all_tech;
-
     @FXML
     private CheckBox checkbox_cheat_give_all_upgrades;
-
     @FXML
     private CheckBox checkbox_cheat_ignore_food;
-
     @FXML
     private CheckBox checkbox_cheat_ignore_mineral;
-
     @FXML
     private CheckBox checkbox_cheat_ignore_resource_cost;
-
     @FXML
     private CheckBox checkbox_cheat_no_cooldowns;
-
     @FXML
     private TextField textfield_cheat_score;
-
+    @FXML
+    private Button button_cheat_valuespecificcontrol_additem_deleteitem;
     @FXML
     private Button button_cheat_score_set;
-
     @FXML
     private ComboBox<UnitType> combobox_cheat_createunit_unittype;
-
     @FXML
     private TextField textfield_cheat_createunit_x;
-
     @FXML
     private TextField textfield_cheat_createunit_y;
-
     @FXML
     private Button button_cheat_createunit_create;
-
     @FXML
     private TextField textfield_cheat_createunit_alliance;
-
     @FXML
     private TextField textfield_cheat_createunit_amount;
-
-    @FXML
-    public ComboBox<UnitWrapper> combobox_cheat_killunit_target_unit;
-
     @FXML
     private Button button_cheat_killunit_kill;
 
@@ -202,7 +162,7 @@ public class SettingsController extends Controller {
     private TextField textfield_cheat_valuepercentagecontrol_energypercentage;
 
     @FXML
-    private ListView<?> list_cheat_valuespecificcontrol_unittypes;
+    private ListView<UnitValueSetter> list_cheat_valuespecificcontrol_unittypes;
 
     @FXML
     private TextField textfield_cheat_valuespecificcontrol_additem_life;
@@ -214,16 +174,25 @@ public class SettingsController extends Controller {
     private TextField textfield_cheat_valuespecificcontrol_additem_energy;
 
     @FXML
-    private ComboBox<?> combobox_cheat_valuespecificcontrol_additem_unittype;
+    private ComboBox<UnitType> combobox_cheat_valuespecificcontrol_additem_unittype;
 
     @FXML
     private Button button_cheat_valuespecificcontrol_additem_add;
 
     @FXML
-    private CheckBox checkbox_monitor_events;
+    private Button button_cheat_killunit_kill_all_enemy;
 
     @FXML
-    private TextArea textarea_monitor;
+    private Button button_cheat_killunit_kill_all_self;
+
+    @FXML
+    private Button button_cheat_killunit_kill_all_ally;
+
+    @FXML
+    private Button button_cheat_killunit_kill_all_neutral;
+
+    @FXML
+    private CheckBox checkbox_monitor_events;
 
     @FXML
     private CheckBox checkbox_monitor_eventalert_idleworkeralert;
@@ -250,7 +219,25 @@ public class SettingsController extends Controller {
     private CheckBox checkbox_monitor_eventalert_buildingcompletedalert;
 
     @FXML
+    void button_cheat_valuespecificcontrol_additem_deleteitem_onAction(ActionEvent event) {
+        list_cheat_valuespecificcontrol_unittypes.getItems().remove(list_cheat_valuespecificcontrol_unittypes.getSelectionModel().getSelectedItem());
+
+        // Save
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.addedUnitTypeList = new ArrayList<>(list_cheat_valuespecificcontrol_unittypes.getItems());
+        saveUIConfig();
+    }
+
+    @FXML
     void button_cheat_createunit_create_onAction(ActionEvent event) {
+
+        /* Prevent NPE. */
+        if (textfield_cheat_createunit_x.getText().isEmpty()) textfield_cheat_createunit_x.setText(String.valueOf(50));
+        if (textfield_cheat_createunit_y.getText().isEmpty()) textfield_cheat_createunit_y.setText(String.valueOf(50));
+        if (textfield_cheat_createunit_alliance.getText().isEmpty())
+            textfield_cheat_createunit_alliance.setText(String.valueOf(1));
+        if (textfield_cheat_createunit_amount.getText().isEmpty())
+            textfield_cheat_createunit_amount.setText(String.valueOf(10));
+
         UnitType unitType = combobox_cheat_createunit_unittype.getSelectionModel().getSelectedItem();
         float x = Float.parseFloat(textfield_cheat_createunit_x.getText());
         float y = Float.parseFloat(textfield_cheat_createunit_y.getText());
@@ -275,30 +262,22 @@ public class SettingsController extends Controller {
         String valueII = textfield_cheat_draw_value2.getText();
 
         if (drawGraphicsType == DrawGraphicsType.LINE) {
-            TitaniumBot.getTitaniumBots().forEach(bot -> {
-                bot.debug().debugLineOut(pointI, pointII, color);
-            });
+            TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugLineOut(pointI, pointII, color).sendDebug());
             return;
         }
 
         if (drawGraphicsType == DrawGraphicsType.BOX) {
-            TitaniumBot.getTitaniumBots().forEach(bot -> {
-                bot.debug().debugBoxOut(pointI, pointII, color);
-            });
+            TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugBoxOut(pointI, pointII, color).sendDebug());
             return;
         }
 
         if (drawGraphicsType == DrawGraphicsType.SPHERE) {
-            TitaniumBot.getTitaniumBots().forEach(bot -> {
-                bot.debug().debugSphereOut(pointI, Float.parseFloat(valueI), color);
-            });
+            TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugSphereOut(pointI, Float.parseFloat(valueI), color).sendDebug());
             return;
         }
 
         if (drawGraphicsType == DrawGraphicsType.TEXT) {
-            TitaniumBot.getTitaniumBots().forEach(bot -> {
-                bot.debug().debugTextOut(valueI, pointI, color, Integer.parseInt(valueII));
-            });
+            TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugTextOut(valueI, pointI, color, Integer.parseInt(valueII)).sendDebug());
             return;
         }
 
@@ -321,8 +300,25 @@ public class SettingsController extends Controller {
     @FXML
     void button_cheat_valuespecificcontrol_additem_add_onAction(ActionEvent event) {
 
-    }
+        UnitType unitType = combobox_cheat_valuespecificcontrol_additem_unittype.getSelectionModel().getSelectedItem();
+        Float health = Float.valueOf(textfield_cheat_valuespecificcontrol_additem_life.getText());
+        Float shield = Float.valueOf(textfield_cheat_valuespecificcontrol_additem_shield.getText());
+        Float energy = Float.valueOf(textfield_cheat_valuespecificcontrol_additem_energy.getText());
 
+        UnitValueSetter unitValueSetter = new UnitValueSetter(unitType, health, shield, energy);
+
+        // Exists ?
+        if (this.list_cheat_valuespecificcontrol_unittypes.getItems().contains(unitValueSetter)) {
+            JavaFxUtil.DialogTools.errorDialog("Already Exist UnitType: " + unitValueSetter.getUnitType());
+            return;
+        }
+
+        this.list_cheat_valuespecificcontrol_unittypes.getItems().add(unitValueSetter);
+
+        // Save
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.addedUnitTypeList = new ArrayList<>(list_cheat_valuespecificcontrol_unittypes.getItems());
+        saveUIConfig();
+    }
 
 
     @FXML
@@ -330,7 +326,7 @@ public class SettingsController extends Controller {
         FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.disableWarFog = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugShowMap().sendDebug());
+        CheatCommands.showMap();
     }
 
     @FXML
@@ -338,7 +334,7 @@ public class SettingsController extends Controller {
         FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.enemyControl = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugEnemyControl().sendDebug());
+        CheatCommands.enemyControl();
     }
 
 
@@ -385,7 +381,7 @@ public class SettingsController extends Controller {
 
     @FXML
     void checkbox_monitor_eventalert_unitdestroyalert_onAction(ActionEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Monitor.EventAlert.unitDestroyAlert  = ((CheckBox) event.getSource()).isSelected();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Monitor.EventAlert.unitDestroyAlert = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
 
@@ -405,30 +401,26 @@ public class SettingsController extends Controller {
 
     @FXML
     void checkbox_cheat_fast_build_onAction(ActionEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.fastBuild  = ((CheckBox) event.getSource()).isSelected();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.fastBuild = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugFastBuild().sendDebug());
+        CheatCommands.fastBuild();
     }
 
     @FXML
     void checkbox_cheat_give_all_resources_onAction(ActionEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.giveAllResources  = ((CheckBox) event.getSource()).isSelected();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.giveAllResources = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> {
-            for (int i = 0; i < 20; i++) {
-                bot.debug().debugGiveAllResources().sendDebug();
-            }
-        });
+        CheatCommands.giveAllResources();
     }
 
     @FXML
     void checkbox_cheat_give_all_tech_onAction(ActionEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.giveAllTech  = ((CheckBox) event.getSource()).isSelected();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.giveAllTech = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugGiveAllTech().sendDebug());
+        CheatCommands.giveAllTech();
     }
 
     @FXML
@@ -436,7 +428,7 @@ public class SettingsController extends Controller {
         FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.giveAllUpgrades = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugGiveAllUpgrades().sendDebug());
+        CheatCommands.giveAllUpgrades();
     }
 
     @FXML
@@ -444,7 +436,7 @@ public class SettingsController extends Controller {
         FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.godMode = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugGodMode().sendDebug());
+        CheatCommands.godMode();
     }
 
     @FXML
@@ -452,7 +444,7 @@ public class SettingsController extends Controller {
         FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.ignoreFood = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugIgnoreFood().sendDebug());
+        CheatCommands.ignoreFood();
     }
 
     @FXML
@@ -460,7 +452,7 @@ public class SettingsController extends Controller {
         FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.ignoreMineral = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugIgnoreMineral().sendDebug());
+        CheatCommands.ignoreMineral();
     }
 
     @FXML
@@ -468,7 +460,7 @@ public class SettingsController extends Controller {
         FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.ignoreResourceCost = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugIgnoreResourceCost().sendDebug());
+        CheatCommands.ignoreResourceCost();
     }
 
     @FXML
@@ -488,7 +480,7 @@ public class SettingsController extends Controller {
         FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.noCooldowns = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
 
-        TitaniumBot.getTitaniumBots().forEach(bot -> bot.debug().debugNoCooldowns().sendDebug());
+        CheatCommands.noCooldowns();
     }
 
     @FXML
@@ -499,7 +491,7 @@ public class SettingsController extends Controller {
 
     @FXML
     void checkbox_client_raw_crop_to_playable_area_onAction(ActionEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.rawCropToPlayableArea  = ((CheckBox) event.getSource()).isSelected();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.rawCropToPlayableArea = ((CheckBox) event.getSource()).isSelected();
         saveUIConfig();
     }
 
@@ -547,8 +539,6 @@ public class SettingsController extends Controller {
     void combobox_cheat_createunit_unittype_onAction(ActionEvent event) {
 
 
-
-
     }
 
     private void resetUIWithDrawGraphicsType() {
@@ -584,7 +574,10 @@ public class SettingsController extends Controller {
 
     @FXML
     void combobox_cheat_killunit_target_unit_onAction(ActionEvent event) {
-
+        if (combobox_cheat_killunit_target_unit.getValue() != null) {
+            Unit unit = combobox_cheat_killunit_target_unit.getValue().getUnit();
+            this.textarea_cheat_killunit_unitinfo.setText(unit.toString());
+        }
     }
 
     @FXML
@@ -601,13 +594,13 @@ public class SettingsController extends Controller {
 
     @FXML
     void textfield_cheat_valuespecificcontrol_additem_life_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.AddItem.life  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.AddItem.life = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_valuespecificcontrol_additem_shield_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.AddItem.shield  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.AddItem.shield = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
@@ -633,127 +626,127 @@ public class SettingsController extends Controller {
 
     @FXML
     void textfield_client_data_dir_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.dataDir  = ((TextField) event.getSource()).getText();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.dataDir = ((TextField) event.getSource()).getText();
         saveUIConfig();
     }
 
     @FXML
     void textfield_client_data_version_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.dataVersion  = ((TextField) event.getSource()).getText();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.dataVersion = ((TextField) event.getSource()).getText();
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_draw_color_b_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.colorB  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.colorB = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_draw_color_g_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.colorG  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.colorG = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_draw_color_r_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.colorR  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.colorR = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_draw_point1_x_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.pointI_x  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.pointI_x = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_draw_point1_y_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.pointI_y  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.pointI_y = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_draw_point2_x_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.pointII_x  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.pointII_x = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_draw_point2_y_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.pointII_y  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.pointII_y = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_draw_value1_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.valueI  = ((TextField) event.getSource()).getText();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.valueI = ((TextField) event.getSource()).getText();
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_draw_value2_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.valueII  = ((TextField) event.getSource()).getText();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Draw.valueII = ((TextField) event.getSource()).getText();
         saveUIConfig();
     }
 
     @FXML
     void textfield_client_egl_path_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.eglPath  = ((TextField) event.getSource()).getText();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.eglPath = ((TextField) event.getSource()).getText();
         saveUIConfig();
     }
 
     @FXML
     void textfield_client_load_settings_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.loadSettings  = ((TextField) event.getSource()).getText();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.loadSettings = ((TextField) event.getSource()).getText();
         saveUIConfig();
     }
 
     @FXML
     void textfield_client_os_mesa_path_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.osMesaPath  = ((TextField) event.getSource()).getText();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.osMesaPath = ((TextField) event.getSource()).getText();
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_score_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.score  = Float.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.Command.score = Float.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_client_step_size_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.stepSize  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.stepSize = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_client_temp_dir_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.tempDir  = ((TextField) event.getSource()).getText();
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.tempDir = ((TextField) event.getSource()).getText();
         saveUIConfig();
     }
 
     @FXML
     void textfield_client_timeout_ms_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.timeoutMS  = Integer.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.timeoutMS = Integer.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_valuepercentagecontrol_energypercentage_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.energyPercentage  = Float.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.energyPercentage = Float.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_valuepercentagecontrol_lifepercentage_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.lifePercentage  = Float.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.lifePercentage = Float.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
     @FXML
     void textfield_cheat_valuepercentagecontrol_shieldpercentage_onKeyTyped(KeyEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.shieldPercentage  = Float.valueOf(((TextField) event.getSource()).getText());
+        FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.shieldPercentage = Float.valueOf(((TextField) event.getSource()).getText());
         saveUIConfig();
     }
 
@@ -791,25 +784,59 @@ public class SettingsController extends Controller {
     void combobox_cheat_killunit_target_unit_onMouseClicked(MouseEvent event) {
 
         if (event.getButton() == MouseButton.SECONDARY) {
-            this.combobox_cheat_killunit_target_unit.getItems().clear();
+            updateKillUnitCombobox();
+        }
+    }
 
-            for (TitaniumBot titaniumBot : TitaniumBot.getTitaniumBots()) {
-                titaniumBot.observation().getUnits().forEach(unitInPool -> {
-                    Unit unit = unitInPool.unit();
-                    if (unit != null) {
-                        this.combobox_cheat_killunit_target_unit.getItems().add(new UnitWrapper(unit));
-                    }
-                });
+    private void updateKillUnitCombobox() {
+        this.combobox_cheat_killunit_target_unit.getItems().clear();
 
-
-            }
+        for (TitaniumBot titaniumBot : TitaniumBot.getTitaniumBots()) {
+            titaniumBot.observation().getUnits().forEach(unitInPool -> {
+                Unit unit = unitInPool.unit();
+                if (unit != null) {
+                    this.combobox_cheat_killunit_target_unit.getItems().add(new UnitWrapper(unit));
+                }
+            });
 
 
         }
-
-
     }
 
+    private void killUnitsByAlliance(Alliance alliance) {
+        updateKillUnitCombobox();
+        combobox_cheat_killunit_target_unit.getItems().stream().filter(unitWrapper -> unitWrapper.getUnit().getAlliance() != null && unitWrapper.getUnit().getAlliance() == alliance)
+                .filter(unitWrapper -> unitWrapper.getUnit().getType() != Units.PROTOSS_NEXUS
+                        && unitWrapper.getUnit().getType() != Units.TERRAN_COMMAND_CENTER
+                        && unitWrapper.getUnit().getType() != Units.TERRAN_COMMAND_CENTER_FLYING
+                        && unitWrapper.getUnit().getType() != Units.ZERG_HATCHERY
+                        && unitWrapper.getUnit().getType() != Units.ZERG_LAIR
+                        && unitWrapper.getUnit().getType() != Units.ZERG_HIVE).forEach(unitWrapper -> {
+            TitaniumBot.getTitaniumBots().forEach(bot -> {
+                bot.debug().debugKillUnit(unitWrapper.getUnit()).sendDebug();
+            });
+        });
+    }
+
+    @FXML
+    void button_cheat_killunit_kill_all_ally_onAction(ActionEvent event) {
+        killUnitsByAlliance(Alliance.ALLY);
+    }
+
+    @FXML
+    void button_cheat_killunit_kill_all_enemy_onAction(ActionEvent event) {
+        killUnitsByAlliance(Alliance.ENEMY);
+    }
+
+    @FXML
+    void button_cheat_killunit_kill_all_neutral_onAction(ActionEvent event) {
+        killUnitsByAlliance(Alliance.NEUTRAL);
+    }
+
+    @FXML
+    void button_cheat_killunit_kill_all_self_onAction(ActionEvent event) {
+        killUnitsByAlliance(Alliance.SELF);
+    }
 
     public void saveUIConfig() {
         // Save UIConfig from Memory to Disk.
@@ -871,6 +898,7 @@ public class SettingsController extends Controller {
         this.textfield_cheat_valuepercentagecontrol_lifepercentage.setText(String.valueOf(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.lifePercentage));
         this.textfield_cheat_valuepercentagecontrol_shieldpercentage.setText(String.valueOf(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.shieldPercentage));
         this.textfield_cheat_valuepercentagecontrol_energypercentage.setText(String.valueOf(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValuePercentageControl.energyPercentage));
+        this.list_cheat_valuespecificcontrol_unittypes.getItems().addAll(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.addedUnitTypeList);
         this.textfield_cheat_valuespecificcontrol_additem_life.setText(String.valueOf(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.AddItem.life));
         this.textfield_cheat_valuespecificcontrol_additem_shield.setText(String.valueOf(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.AddItem.shield));
         this.textfield_cheat_valuespecificcontrol_additem_energy.setText(String.valueOf(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Cheat.ValueControl.ValueSpecificControl.AddItem.energy));
@@ -896,7 +924,7 @@ public class SettingsController extends Controller {
         loadDrawGraphicsTypes();
 
         /* Load UnitTypes */
-        loadCreateUnitUnitTypes();
+        loadUnitTypes();
     }
 
     private void loadDrawGraphicsTypes() {
@@ -905,9 +933,12 @@ public class SettingsController extends Controller {
         this.resetUIWithDrawGraphicsType();
     }
 
-    private void loadCreateUnitUnitTypes() {
+    private void loadUnitTypes() {
         this.combobox_cheat_createunit_unittype.getItems().addAll(Units.values());
         this.combobox_cheat_createunit_unittype.getSelectionModel().selectFirst();
+
+        this.combobox_cheat_valuespecificcontrol_additem_unittype.getItems().addAll(Units.values());
+        this.combobox_cheat_valuespecificcontrol_additem_unittype.getSelectionModel().selectFirst();
     }
 
 }

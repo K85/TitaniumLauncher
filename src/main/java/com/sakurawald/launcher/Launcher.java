@@ -5,13 +5,11 @@ import com.github.ocraft.s2client.bot.setting.PlayerSettings;
 import com.github.ocraft.s2client.bot.syntax.SettingsSyntax;
 import com.github.ocraft.s2client.protocol.game.BattlenetMap;
 import com.github.ocraft.s2client.protocol.game.LocalMap;
+import com.sakurawald.bot.TitaniumBot;
 import com.sakurawald.file.config.ConfigFile;
 import com.sakurawald.file.config.FileManager;
-import com.sakurawald.ui.controller.AppController;
-import com.sakurawald.util.JavaFxUtil;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
@@ -41,7 +39,12 @@ public class Launcher {
         while (s2Coordinator.update()) {
             // Do nothing.
         }
+
+        // Update TitaniumBots.
+        TitaniumBot.clearInvalidTitaniumBots();
+
         s2Coordinator.quit();
+
 
     }
 
@@ -50,16 +53,23 @@ public class Launcher {
         SettingsSyntax settingsSyntax = S2Coordinator.setup()
                 .setRealtime(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.realTime)
                 .setTraced(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.trace)
-                .setDataVersion(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.dataVersion)
                 .setMultithreaded(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.multiThreads)
                 .setNeedsSupportDir(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.needsSupportDir)
                 .setRawAffectsSelection(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.rawAffectsSelection)
                 .setRawCropToPlayableArea(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.rawCropToPlayableArea)
-                .setStepSize(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.stepSize)
                 .setShowBurrowed(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.showBurrowed)
                 .setShowCloaked(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.showCloaked)
                 .setUseGeneralizedAbilityId(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.useGeneralizedAbilityID)
                 .setVerbose(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.verbose);
+
+
+        if (FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.dataVersion != null) {
+            settingsSyntax.setDataVersion(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.dataVersion);
+        }
+
+        if (FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.stepSize != ConfigFile.DefaultValue.INT_DEFAULT_VALUE) {
+            settingsSyntax.setStepSize(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.stepSize);
+        }
 
         if (FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.dataDir != null) {
             settingsSyntax.setDataDir(Paths.get(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.dataDir));
@@ -74,7 +84,7 @@ public class Launcher {
         }
 
         if (FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.osMesaPath != null) {
-           settingsSyntax.setOsMesaPath(Paths.get(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.osMesaPath));
+            settingsSyntax.setOsMesaPath(Paths.get(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.osMesaPath));
         }
 
         if (FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.tempDir != null) {
@@ -86,7 +96,7 @@ public class Launcher {
         }
 
         if (FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.WindowLocation.left != ConfigFile.DefaultValue.INT_DEFAULT_VALUE
-        || FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.WindowLocation.top != ConfigFile.DefaultValue.INT_DEFAULT_VALUE) {
+                || FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.WindowLocation.top != ConfigFile.DefaultValue.INT_DEFAULT_VALUE) {
             settingsSyntax.setWindowLocation(FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.WindowLocation.left, FileManager.applicationConfig_File.getConfigDataClassInstance().Settings.Client.WindowLocation.top);
         }
 
