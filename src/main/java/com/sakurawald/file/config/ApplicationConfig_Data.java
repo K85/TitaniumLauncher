@@ -40,7 +40,6 @@ public class ApplicationConfig_Data {
 
             public static class Vs_AI {
                 public Race race = Race.TERRAN;
-                public PluginBase bot = null;
             }
 
         }

@@ -270,8 +270,7 @@ public class AppController extends Controller {
 
     @FXML
     void combobox_choose_opponent_ai_bot_onAction(ActionEvent event) {
-        FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_AI.bot = ((ComboBox<PluginBase>) event.getSource()).getSelectionModel().getSelectedItem();
-        saveUIConfig();
+
     }
 
     @FXML
@@ -315,7 +314,6 @@ public class AppController extends Controller {
         this.combobox_choose_opponent_computer_race.getSelectionModel().select(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_Computer.race);
         this.combobox_choose_opponent_computer_difficulty.getSelectionModel().select(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_Computer.difficulty);
         this.combobox_choose_opponent_ai_race.getSelectionModel().select(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_AI.race);
-        this.combobox_choose_opponent_ai_bot.getSelectionModel().select(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.Opponent.Vs_AI.bot);
 
         this.textfield_map.setText(FileManager.applicationConfig_File.getConfigDataClassInstance().Base.map);
 
